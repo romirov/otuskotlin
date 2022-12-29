@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/m1l1-helloworld/otuskotlin.m1l1-helloworld.main.iml" filepath="$PROJECT_DIR$/.idea/modules/m1l1-helloworld/otuskotlin.m1l1-helloworld.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/m1l1-helloworld/otuskotlin.m1l1-helloworld.test.iml" filepath="$PROJECT_DIR$/.idea/modules/m1l1-helloworld/otuskotlin.m1l1-helloworld.test.iml" />
-    </modules>
-  </component>
-</project>
