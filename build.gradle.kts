@@ -1,7 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+val jvmVersion: String by project
+
 plugins {
-    kotlin("jvm") version "1.7.21"
+    id("org.jetbrains.kotlin.jvm")
     application
 }
 
@@ -16,6 +18,6 @@ subprojects {
     }
 
     tasks.withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
+        kotlinOptions.jvmTarget = "$jvmVersion"
     }
 }
