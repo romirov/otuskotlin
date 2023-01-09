@@ -1,6 +1,6 @@
 package ru.otus.otuskotlin.m1l1
 
-import org.junit.jupiter.api.Test
+import org.junit.Test
 import kotlin.test.assertEquals
 
 class FistTest {

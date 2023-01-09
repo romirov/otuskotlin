@@ -1,5 +1,5 @@
 package ru.otus.otuskotlin.m1l1
 
-fun main(args: Array<String>) {
+fun main() {
     println("Hello World!")
 }
