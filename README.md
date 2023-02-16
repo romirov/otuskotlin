@@ -1,7 +1,7 @@
 # Educational project. Microservice: sale of subscriptions
 
-The microservice is designed to create and edit "subscriptions".
-There is a mechanism for tracking the activity of "subscriptions" and their payment through yookassa.ru
+Микросервис предназначен для создания и редактирования платных подписов, оплата которых производится через yookassa.ru.
+![](./imgs/Frontend_design.png)
 
 ## Documentations
 
