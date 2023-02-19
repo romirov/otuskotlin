@@ -1,0 +1,582 @@
+openapi: 3.0.4
+info:
+  title: Subscription
+  description: This is the place where buyers can subscribe
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/v1
+tags:
+  - name: subscription
+    description: Подписка
+  - name: payment
+    description: Платеж
+paths:
+  /subscription/create:
+    post:
+      tags:
+        - subscription
+      summary: Create subscription
+      operationId: subscriptionCreate
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionCreateRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionCreateResponse'
+  /subscription/read:
+    post:
+      tags:
+        - subscription
+      summary: Read subscription
+      operationId: adRead
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionReadRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionReadResponse'
+  /subscription/update:
+    post:
+      tags:
+        - subscription
+      summary: Update subscription
+      operationId: subscriptionUpdate
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionUpdateRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionUpdateResponse'
+  /subscription/delete:
+    post:
+      tags:
+        - subscription
+      summary: Delete subscription
+      operationId: subscriptionDelete
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionDeleteRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionDeleteResponse'
+  /subscription/search:
+    post:
+      tags:
+        - subscription
+      summary: Search subscription
+      operationId: subscriptionSearch
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionSearchRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionSearchResponse'
+  /payment/create:
+    post:
+      tags:
+        - payment
+      summary: Create payment
+      operationId: paymentCreate
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentCreateRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentCreateResponse'
+  /payment/status:
+    post:
+      tags:
+        - payment
+      summary: Payment Status
+      operationId: paymentStatus
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentStatusRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentStatusResponse'
+components:
+  schemas:
+
+    IRequest:
+      type: object
+      description: Базовый интерфейс для всех запросов
+      properties:
+        requestType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          example: create
+        requestId:
+          type: string
+          description: Идентификатор запроса для отладки
+      discriminator:
+        propertyName: requestType
+        mapping:
+          create: '#/components/schemas/SubscriptionCreateRequest'
+          read:   '#/components/schemas/SubscriptionReadRequest'
+          update: '#/components/schemas/SubscriptionUpdateRequest'
+          delete: '#/components/schemas/SubscriptionDeleteRequest'
+          search: '#/components/schemas/SubscriptionSearchRequest'
+
+    PaymentRequest:
+      type: object
+      description: Базовый интерфейс для запросов, связанных с оплатой
+      properties:
+        requestType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          example: create
+        requestId:
+          type: string
+          description: Идентификатор запроса для отладки
+      discriminator:
+        propertyName: requestType
+        mapping:
+          create: '#/components/schemas/PaymentCreateRequest'
+          status: '#/components/schemas/PaymentStatusRequest'
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        group:
+          type: string
+        field:
+          type: string
+        message:
+          type: string
+
+    ResponseResult:
+      type: string
+      enum:
+        - success
+        - error
+
+    IResponse:
+      type: object
+      description: Базовый интерфейс для всех ответов
+      properties:
+        responseType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          example: create
+        requestId:
+          type: string
+          description: Идентификатор запроса для отладки
+        result:
+          $ref: '#/components/schemas/ResponseResult'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+
+      discriminator:
+        propertyName: responseType
+        mapping:
+          create: '#/components/schemas/AdCreateResponse'
+          read:   '#/components/schemas/AdReadResponse'
+          update: '#/components/schemas/AdUpdateResponse'
+          delete: '#/components/schemas/AdDeleteResponse'
+          search: '#/components/schemas/AdSearchResponse'
+          offers: '#/components/schemas/AdOffersResponse'
+          init: '#/components/schemas/AdInitResponse'
+
+    PaymentResponse:
+      type: object
+      description: Базовый интерфейс для ответов, связанных с оплатой
+      properties:
+        responseType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          example: create
+        requestId:
+          type: string
+          description: Идентификатор запроса для отладки
+        result:
+          $ref: '#/components/schemas/ResponseResult'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+
+      discriminator:
+        propertyName: responseType
+        mapping:
+          create: '#/components/schemas/PaymentCreateResponse'
+          status: '#/components/schemas/PaymentStatusResponse'
+
+    UserId:
+      type: string
+      description: Идентификатор пользователя
+    SubscriptionId:
+      type: string
+      description: Идентификатор подписки
+    SubscriptionLock:
+      type: string
+      description: Версия оптимистичной блокировки
+    PaymentId:
+      type: string
+      description: Идентификатор платежа
+    PaymentLock:
+      type: string
+      description: Версия оптимистичной блокировки
+
+    BaseSubscription:
+      type: object
+      description: Объект описывает свойства, одинаковые для create и update
+      properties:
+        title:
+          type: string
+          description: Заголовок подписки
+        description:
+          type: string
+          description: Описание подписки
+
+    BasePayment:
+      type: object
+      description: Объект описывает свойства, одинаковые для create
+      properties:
+        title:
+          type: string
+          description: Заголовок платежа
+        description:
+          type: string
+          description: Описание платежа
+
+    SubscriptionCreateObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseSubscription'
+
+    SubscriptionCreateRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/SubscriptionRequestDebug'
+        - type: object
+          properties:
+            subscription:
+              $ref: '#/components/schemas/SubscriptionCreateObject'
+
+    SubscriptionReadObject:
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/SubscriptionId'
+
+    SubscriptionReadRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/SubscriptionRequestDebug'
+        - type: object
+          properties:
+            subscription:
+              $ref: '#/components/schemas/SubscriptionReadObject'
+
+    SubscriptionUpdateObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseSubscription'
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/SubscriptionId'
+            lock:
+              $ref: '#/components/schemas/SubscriptionLock'
+
+    SubscriptionUpdateRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/SubscriptionRequestDebug'
+        - type: object
+          properties:
+            subscription:
+              $ref: '#/components/schemas/SubscriptionUpdateObject'
+
+    SubscriptionDeleteObject:
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/SubscriptionId'
+            lock:
+              $ref: '#/components/schemas/SubscriptionLock'
+
+    SubscriptionDeleteRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/SubscriptionRequestDebug'
+        - type: object
+          properties:
+            subscription:
+              $ref: '#/components/schemas/SubscriptionDeleteObject'
+
+    SubscriptionSearchFilter:
+      type: object
+      description: Набор фильтров для поиска
+      properties:
+        searchString:
+          type: string
+          description: Поисковая строка, которая будет искаться в подписках
+
+    SubscriptionSearchRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/SubscriptionRequestDebug'
+        - type: object
+          properties:
+            adFilter:
+              $ref: '#/components/schemas/SubscriptionSearchFilter'
+
+    PaymentCreateObject:
+      allOf:
+        - $ref: '#/components/schemas/BasePayment'
+
+    PaymentCreateRequest:
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/PaymentRequestDebug'
+        - type: object
+          properties:
+            subscription:
+              $ref: '#/components/schemas/PaymentCreateObject'
+
+    PaymentStatusObject:
+      allOf:
+        - type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/PaymentId'
+            lock:
+              $ref: '#/components/schemas/PaymentLock'
+
+    PaymentStatusRequest:
+      allOf:
+        - $ref: '#/components/schemas/PaymentRequest'
+        - $ref: '#/components/schemas/PaymentRequestDebug'
+        - type: object
+          properties:
+            subscription:
+              $ref: '#/components/schemas/PaymentStatusObject'
+
+    SubscriptionResponseObject:
+      allOf:
+        - $ref: '#/components/schemas/BaseSubscription'
+        - type: object
+          description: Объект, который возвращается в ответе бэкенда
+          properties:
+            id:
+              $ref: '#/components/schemas/SubscriptionId'
+            ownerId:
+              $ref: '#/components/schemas/UserId'
+            lock:
+              $ref: '#/components/schemas/SubscriptionLock'
+            permissions:
+              type: array
+              uniqueItems: true
+              items:
+                $ref: '#/components/schemas/SubscriptionPermissions'
+
+    SubscriptionPermissions:
+      type: string
+      description: Доступы для клиента для операций над подпиской
+      enum:
+        - read
+
+    SubscriptionResponseSingle:
+      allOf:
+        - type: object
+          description: Ответ с одним объектом объявления
+          properties:
+            subscription:
+              $ref: '#/components/schemas/SubscriptionResponseObject'
+
+    SubscriptionResponseMulti:
+      allOf:
+        - type: object
+          description: Список найденных объектов
+          properties:
+            subscriptions:
+              type: array
+              items:
+                $ref: '#/components/schemas/SubscriptionResponseObject'
+
+    SubscriptionCreateResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/SubscriptionResponseSingle'
+
+    SubscriptionReadResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/SubscriptionResponseSingle'
+
+    SubscriptionUpdateResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/SubscriptionResponseSingle'
+
+    SubscriptionDeleteResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/SubscriptionResponseSingle'
+
+    SubscriptionSearchResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/SubscriptionResponseMulti'
+
+    PaymentResponseObject:
+      allOf:
+        - $ref: '#/components/schemas/BasePayment'
+        - type: object
+          description: Объект, который возвращается в ответе бэкенда
+          properties:
+            id:
+              $ref: '#/components/schemas/PaymentId'
+            ownerId:
+              $ref: '#/components/schemas/UserId'
+            lock:
+              $ref: '#/components/schemas/PaymentLock'
+            permissions:
+              type: array
+              uniqueItems: true
+              items:
+                $ref: '#/components/schemas/PaymentPermissions'
+
+    PaymentPermissions:
+      type: string
+      description: Доступы для клиента для операций над платежом
+      enum:
+        - makePayment
+
+    PaymentCreateResponse:
+      allOf:
+        - $ref: '#/components/schemas/PaymentResponse'
+
+    PaymentStatusResponse:
+      allOf:
+        - $ref: '#/components/schemas/PaymentResponse'
+
+    # STUBS ======================
+    SubscriptionRequestDebugMode:
+      type: string
+      enum:
+        - prod
+        - test
+        - stub
+
+    PaymentRequestDebugMode:
+      type: string
+      enum:
+        - prod
+        - test
+        - stub
+
+    SubscriptionRequestDebug:
+      type: object
+      properties:
+        debug:
+          $ref: '#/components/schemas/SubscriptionDebug'
+
+    PaymentRequestDebug:
+      type: object
+      properties:
+        debug:
+          $ref: '#/components/schemas/PaymentDebug'
+
+    SubscriptionDebug:
+      type: object
+      properties:
+        mode:
+          $ref: '#/components/schemas/SubscriptionRequestDebugMode'
+        stub:
+          $ref: '#/components/schemas/SubscriptionRequestDebugStubs'
+
+    PaymentDebug:
+      type: object
+      properties:
+        mode:
+          $ref: '#/components/schemas/PaymentRequestDebugMode'
+        stub:
+          $ref: '#/components/schemas/PaymentRequestDebugStubs'
+
+    SubscriptionRequestDebugStubs:
+      type: string
+      description: Перечисления всех стабов
+      enum:
+        - success
+        - notFound
+        - badId
+        - badTitle
+        - badDescription
+        - cannotDelete
+        - badSearchString
+
+    PaymentRequestDebugStubs:
+      type: string
+      description: Перечисления всех стабов
+      enum:
+        - success
+        - notFound
+        - badId
+        - badTitle
+        - badDescription
