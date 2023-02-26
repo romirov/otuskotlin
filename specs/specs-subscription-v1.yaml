@@ -39,7 +39,7 @@ paths:
       tags:
         - subscription
       summary: Read subscription
-      operationId: adRead
+      operationId: subscriptionRead
       requestBody:
         description: Request body
         content:
@@ -233,13 +233,11 @@ components:
       discriminator:
         propertyName: responseType
         mapping:
-          create: '#/components/schemas/AdCreateResponse'
-          read:   '#/components/schemas/AdReadResponse'
-          update: '#/components/schemas/AdUpdateResponse'
-          delete: '#/components/schemas/AdDeleteResponse'
-          search: '#/components/schemas/AdSearchResponse'
-          offers: '#/components/schemas/AdOffersResponse'
-          init: '#/components/schemas/AdInitResponse'
+          create: '#/components/schemas/SubscriptionCreateResponse'
+          read:   '#/components/schemas/SubscriptionReadResponse'
+          update: '#/components/schemas/SubscriptionUpdateResponse'
+          delete: '#/components/schemas/SubscriptionDeleteResponse'
+          search: '#/components/schemas/SubscriptionSearchResponse'
 
     PaymentResponse:
       type: object
@@ -383,7 +381,7 @@ components:
         - $ref: '#/components/schemas/SubscriptionRequestDebug'
         - type: object
           properties:
-            adFilter:
+            subscriptionFilter:
               $ref: '#/components/schemas/SubscriptionSearchFilter'
 
     PaymentCreateObject:
