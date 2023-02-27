@@ -3,7 +3,8 @@ import models.*
 import stubs.Stubs
 import kotlin.Error
 
-data class MkplContext(
+data class Context(
+    var command: Command = Command.NONE,
     var state: State = State.NONE,
     val errors: MutableList<Error> = mutableListOf(),
 

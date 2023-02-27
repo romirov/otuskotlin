@@ -14,6 +14,8 @@ pluginManagement {
     }
 }
 
-include("m1l1-helloworld")
+//include("m1l1-helloworld")
 include("api")
+include("common")
+include("mappers")
 include("common")
