@@ -157,9 +157,9 @@ paths:
 components:
   schemas:
 
-    IRequest:
+    SubscriptionRequest:
       type: object
-      description: Базовый интерфейс для всех запросов
+      description: Базовый интерфейс для всех запросов, связанных с подписками
       properties:
         requestType:
           type: string
@@ -212,9 +212,9 @@ components:
         - success
         - error
 
-    IResponse:
+    SubscriptionResponse:
       type: object
-      description: Базовый интерфейс для всех ответов
+      description: Базовый интерфейс для всех ответов, связанных с подписками
       properties:
         responseType:
           type: string
@@ -307,7 +307,7 @@ components:
 
     SubscriptionCreateRequest:
       allOf:
-        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/SubscriptionRequest'
         - $ref: '#/components/schemas/SubscriptionRequestDebug'
         - type: object
           properties:
@@ -323,7 +323,7 @@ components:
 
     SubscriptionReadRequest:
       allOf:
-        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/SubscriptionRequest'
         - $ref: '#/components/schemas/SubscriptionRequestDebug'
         - type: object
           properties:
@@ -342,7 +342,7 @@ components:
 
     SubscriptionUpdateRequest:
       allOf:
-        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/SubscriptionRequest'
         - $ref: '#/components/schemas/SubscriptionRequestDebug'
         - type: object
           properties:
@@ -360,7 +360,7 @@ components:
 
     SubscriptionDeleteRequest:
       allOf:
-        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/SubscriptionRequest'
         - $ref: '#/components/schemas/SubscriptionRequestDebug'
         - type: object
           properties:
@@ -377,7 +377,7 @@ components:
 
     SubscriptionSearchRequest:
       allOf:
-        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/SubscriptionRequest'
         - $ref: '#/components/schemas/SubscriptionRequestDebug'
         - type: object
           properties:
@@ -390,11 +390,11 @@ components:
 
     PaymentCreateRequest:
       allOf:
-        - $ref: '#/components/schemas/IRequest'
+        - $ref: '#/components/schemas/PaymentRequest'
         - $ref: '#/components/schemas/PaymentRequestDebug'
         - type: object
           properties:
-            subscription:
+            payment:
               $ref: '#/components/schemas/PaymentCreateObject'
 
     PaymentStatusObject:
@@ -412,7 +412,7 @@ components:
         - $ref: '#/components/schemas/PaymentRequestDebug'
         - type: object
           properties:
-            subscription:
+            payment:
               $ref: '#/components/schemas/PaymentStatusObject'
 
     SubscriptionResponseObject:
@@ -459,27 +459,27 @@ components:
 
     SubscriptionCreateResponse:
       allOf:
-        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/SubscriptionResponse'
         - $ref: '#/components/schemas/SubscriptionResponseSingle'
 
     SubscriptionReadResponse:
       allOf:
-        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/SubscriptionResponse'
         - $ref: '#/components/schemas/SubscriptionResponseSingle'
 
     SubscriptionUpdateResponse:
       allOf:
-        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/SubscriptionResponse'
         - $ref: '#/components/schemas/SubscriptionResponseSingle'
 
     SubscriptionDeleteResponse:
       allOf:
-        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/SubscriptionResponse'
         - $ref: '#/components/schemas/SubscriptionResponseSingle'
 
     SubscriptionSearchResponse:
       allOf:
-        - $ref: '#/components/schemas/IResponse'
+        - $ref: '#/components/schemas/SubscriptionResponse'
         - $ref: '#/components/schemas/SubscriptionResponseMulti'
 
     PaymentResponseObject:

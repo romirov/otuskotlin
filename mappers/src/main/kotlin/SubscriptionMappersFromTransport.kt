@@ -6,18 +6,18 @@ import org.otus.otuskotlin.api.v1.models.*
 import ru.otus.otuskotlin.mappers.exceptions.UnknownRequestClass
 import stubs.Stubs
 
-fun Context.fromTransport(request: IRequest) = when (request) {
-    is SubscriptionCreateRequest -> fromTransport(request)
-    is SubscriptionReadRequest -> fromTransport(request)
-    is SubscriptionUpdateRequest -> fromTransport(request)
-    is SubscriptionDeleteRequest -> fromTransport(request)
-    is SubscriptionSearchRequest -> fromTransport(request)
+fun Context.fromSubscriptionTransport(request: SubscriptionRequest) = when (request) {
+    is SubscriptionCreateRequest -> fromSubscriptionTransport(request)
+    is SubscriptionReadRequest -> fromSubscriptionTransport(request)
+    is SubscriptionUpdateRequest -> fromSubscriptionTransport(request)
+    is SubscriptionDeleteRequest -> fromSubscriptionTransport(request)
+    is SubscriptionSearchRequest -> fromSubscriptionTransport(request)
     else -> throw UnknownRequestClass(request.javaClass)
 }
 
-private fun String?.toAdId() = this?.let { SubscriptionId(it) } ?: SubscriptionId.NONE
-private fun String?.toAdWithId() = Subscription(id = this.toAdId())
-private fun IRequest?.requestId() = this?.requestId?.let { RequestId(it) } ?: RequestId.NONE
+private fun String?.toSubscriptionId() = this?.let { SubscriptionId(it) } ?: SubscriptionId.NONE
+private fun String?.toSubscriptionWithId() = Subscription(id = this.toSubscriptionId())
+private fun SubscriptionRequest?.requestId() = this?.requestId?.let { RequestId(it) } ?: RequestId.NONE
 
 private fun SubscriptionDebug?.transportToWorkMode(): WorkMode = when (this?.mode) {
     SubscriptionRequestDebugMode.PROD -> WorkMode.PROD
@@ -37,7 +37,7 @@ private fun SubscriptionDebug?.transportToStubCase(): Stubs = when (this?.stub) 
     null -> Stubs.NONE
 }
 
-fun Context.fromTransport(request: SubscriptionCreateRequest) {
+fun Context.fromSubscriptionTransport(request: SubscriptionCreateRequest) {
     command = Command.CREATE
     requestId = request.requestId()
     subscriptionRequest = request.subscription?.toInternal() ?: Subscription()
@@ -45,15 +45,15 @@ fun Context.fromTransport(request: SubscriptionCreateRequest) {
     stubCase = request.debug.transportToStubCase()
 }
 
-fun Context.fromTransport(request: SubscriptionReadRequest) {
+fun Context.fromSubscriptionTransport(request: SubscriptionReadRequest) {
     command = Command.READ
     requestId = request.requestId()
-    subscriptionRequest = request.subscription?.id.toAdWithId()
+    subscriptionRequest = request.subscription?.id.toSubscriptionWithId()
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()
 }
 
-fun Context.fromTransport(request: SubscriptionUpdateRequest) {
+fun Context.fromSubscriptionTransport(request: SubscriptionUpdateRequest) {
     command = Command.UPDATE
     requestId = request.requestId()
     subscriptionRequest = request.subscription?.toInternal() ?: Subscription()
@@ -61,15 +61,15 @@ fun Context.fromTransport(request: SubscriptionUpdateRequest) {
     stubCase = request.debug.transportToStubCase()
 }
 
-fun Context.fromTransport(request: SubscriptionDeleteRequest) {
+fun Context.fromSubscriptionTransport(request: SubscriptionDeleteRequest) {
     command = Command.DELETE
     requestId = request.requestId()
-    subscriptionRequest = request.subscription?.id.toAdWithId()
+    subscriptionRequest = request.subscription?.id.toSubscriptionWithId()
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()
 }
 
-fun Context.fromTransport(request: SubscriptionSearchRequest) {
+fun Context.fromSubscriptionTransport(request: SubscriptionSearchRequest) {
     command = Command.SEARCH
     requestId = request.requestId()
     subscriptionFilterRequest = request.subscriptionFilter.toInternal()
@@ -87,7 +87,7 @@ private fun SubscriptionCreateObject.toInternal(): Subscription = Subscription(
 )
 
 private fun SubscriptionUpdateObject.toInternal(): Subscription = Subscription(
-    id = this.id.toAdId(),
+    id = this.id.toSubscriptionId(),
     title = this.title ?: "",
     description = this.description ?: ""
 )

@@ -6,5 +6,6 @@ enum class Command {
     READ,
     UPDATE,
     DELETE,
-    SEARCH
+    SEARCH,
+    STATUS
 }

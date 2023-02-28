@@ -1,6 +1,6 @@
 package models
 
-data class Error(
+data class CommonError(
     val code: String = "",
     val group: String = "",
     val field: String = "",

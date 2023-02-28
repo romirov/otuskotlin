@@ -12,8 +12,8 @@ class RequestSerializationTest {
             stub = SubscriptionRequestDebugStubs.BAD_TITLE
         ),
         subscription = SubscriptionCreateObject(
-            title = "ad title",
-            description = "ad description"
+            title = "subscription title",
+            description = "subscription description"
         )
     )
 
@@ -21,7 +21,7 @@ class RequestSerializationTest {
     fun serialize() {
         val json = apiV1Mapper.writeValueAsString(request)
 
-        assertContains(json, Regex("\"title\":\\s*\"ad title\""))
+        assertContains(json, Regex("\"title\":\\s*\"subscription title\""))
         assertContains(json, Regex("\"mode\":\\s*\"stub\""))
         assertContains(json, Regex("\"stub\":\\s*\"badTitle\""))
         assertContains(json, Regex("\"requestType\":\\s*\"create\""))
@@ -30,7 +30,7 @@ class RequestSerializationTest {
     @Test
     fun deserialize() {
         val json = apiV1Mapper.writeValueAsString(request)
-        val obj = apiV1Mapper.readValue(json, IRequest::class.java) as SubscriptionCreateRequest
+        val obj = apiV1Mapper.readValue(json, SubscriptionRequest::class.java) as SubscriptionCreateRequest
 
         assertEquals(request, obj)
     }

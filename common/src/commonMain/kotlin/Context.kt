@@ -1,12 +1,11 @@
 import kotlinx.datetime.Instant
 import models.*
 import stubs.Stubs
-import kotlin.Error
 
 data class Context(
     var command: Command = Command.NONE,
     var state: State = State.NONE,
-    val errors: MutableList<Error> = mutableListOf(),
+    val errors: MutableList<CommonError> = mutableListOf(),
 
     var workMode: WorkMode = WorkMode.PROD,
     var stubCase: Stubs = Stubs.NONE,
