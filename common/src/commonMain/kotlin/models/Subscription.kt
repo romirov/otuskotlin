@@ -5,5 +5,6 @@ data class Subscription(
     var title: String = "",
     var description: String = "",
     var productId: ProductId = ProductId.NONE,
-    var ownerId: UserId = UserId.NONE
+    val subscriptionStatus: SubscriptionStatus = SubscriptionStatus.NONE,
+    val subscriptionType: DealSide = DealSide.NONE
 )

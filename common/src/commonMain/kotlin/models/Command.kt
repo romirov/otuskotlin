@@ -7,5 +7,7 @@ enum class Command {
     UPDATE,
     DELETE,
     SEARCH,
-    STATUS
+    STATUS,
+    PAY,
+    ROLLBACK
 }

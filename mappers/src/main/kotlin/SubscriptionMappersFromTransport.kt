@@ -12,6 +12,7 @@ fun Context.fromSubscriptionTransport(request: SubscriptionRequest) = when (requ
     is SubscriptionUpdateRequest -> fromSubscriptionTransport(request)
     is SubscriptionDeleteRequest -> fromSubscriptionTransport(request)
     is SubscriptionSearchRequest -> fromSubscriptionTransport(request)
+    is SubscriptionStatusRequest -> fromSubscriptionTransport(request)
     else -> throw UnknownRequestClass(request.javaClass)
 }
 
@@ -77,6 +78,14 @@ fun Context.fromSubscriptionTransport(request: SubscriptionSearchRequest) {
     stubCase = request.debug.transportToStubCase()
 }
 
+fun Context.fromSubscriptionTransport(request: SubscriptionStatusRequest) {
+    command = Command.UPDATE
+    requestId = request.requestId()
+    subscriptionRequest = request.subscription?.toInternal() ?: Subscription()
+    workMode = request.debug.transportToWorkMode()
+    stubCase = request.debug.transportToStubCase()
+}
+
 private fun SubscriptionSearchFilter?.toInternal(): Filter = Filter(
     searchString = this?.searchString ?: ""
 )
@@ -90,4 +99,8 @@ private fun SubscriptionUpdateObject.toInternal(): Subscription = Subscription(
     id = this.id.toSubscriptionId(),
     title = this.title ?: "",
     description = this.description ?: ""
+)
+
+private fun SubscriptionStatusObject.toInternal(): Subscription = Subscription(
+    id = this.id.toSubscriptionId()
 )

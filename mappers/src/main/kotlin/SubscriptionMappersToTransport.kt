@@ -11,6 +11,7 @@ fun Context.toTransportSubscription(): SubscriptionResponse = when (val cmd = co
     Command.UPDATE -> toTransportSubscriptionUpdate()
     Command.DELETE -> toTransportSubscriptionDelete()
     Command.SEARCH -> toTransportSubscriptionSearch()
+    Command.STATUS -> toTransportSubscriptionStatus()
     else -> throw UnknownSubscriptionCommand(cmd)
 }
 
@@ -49,6 +50,13 @@ fun Context.toTransportSubscriptionSearch() = SubscriptionSearchResponse(
     subscriptions = subscriptionsResponse.toTransportSubscription()
 )
 
+fun Context.toTransportSubscriptionStatus() = SubscriptionStatusResponse(
+    requestId = this.requestId.asString().takeIf { it.isNotBlank() },
+    result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
+    errors = errors.toTransportErrors(),
+    subscription = subscriptionResponse.toTransportSubscription()
+)
+
 fun List<Subscription>.toTransportSubscription(): List<SubscriptionResponseObject>? = this
     .map { it.toTransportSubscription() }
     .toList()
@@ -58,9 +66,7 @@ private fun Subscription.toTransportSubscription(): SubscriptionResponseObject =
     id = id.takeIf { it != SubscriptionId.NONE }?.asString(),
     title = title.takeIf { it.isNotBlank() },
     description = description.takeIf { it.isNotBlank() },
-    ownerId = ownerId.takeIf { it != UserId.NONE }?.asString()
 )
-
 
 private fun List<CommonError>.toTransportErrors(): List<Error>? = this
     .map { it.toTransportSubscription() }
