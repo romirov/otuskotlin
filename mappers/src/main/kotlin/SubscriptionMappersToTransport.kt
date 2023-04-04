@@ -57,6 +57,13 @@ fun Context.toTransportSubscriptionStatus() = SubscriptionStatusResponse(
     subscription = subscriptionResponse.toTransportSubscription()
 )
 
+fun Context.toTransportSubscriptionOffers() = SubscriptionOffersResponse(
+    requestId = this.requestId.asString().takeIf { it.isNotBlank() },
+    result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
+    errors = errors.toTransportErrors(),
+    subscriptions = subscriptionsResponse.toTransportSubscription()
+)
+
 fun List<Subscription>.toTransportSubscription(): List<SubscriptionResponseObject>? = this
     .map { it.toTransportSubscription() }
     .toList()

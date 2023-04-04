@@ -134,6 +134,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SubscriptionStatusResponse'
+  /subscription/offers:
+    post:
+      tags:
+        - subscription
+      summary: Search offers
+      operationId: subscriptionOffers
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionOffersRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionOffersResponse'
   /payment/create:
     post:
       tags:
@@ -196,6 +216,8 @@ components:
           update: '#/components/schemas/SubscriptionUpdateRequest'
           delete: '#/components/schemas/SubscriptionDeleteRequest'
           search: '#/components/schemas/SubscriptionSearchRequest'
+          status: '#/components/schemas/SubscriptionStatusRequest'
+          offers: '#/components/schemas/SubscriptionOffersRequest'
 
     PaymentRequest:
       type: object
@@ -258,6 +280,8 @@ components:
           update: '#/components/schemas/SubscriptionUpdateResponse'
           delete: '#/components/schemas/SubscriptionDeleteResponse'
           search: '#/components/schemas/SubscriptionSearchResponse'
+          status: '#/components/schemas/SubscriptionStatusResponse'
+          offers: '#/components/schemas/SubscriptionOffersResponse'
 
     PaymentResponse:
       type: object
@@ -449,6 +473,18 @@ components:
             subscription:
               $ref: '#/components/schemas/SubscriptionStatusObject'
 
+    SubscriptionOffersObject:
+      $ref: '#/components/schemas/SubscriptionReadObject'
+
+    SubscriptionOffersRequest:
+      allOf:
+        - $ref: '#/components/schemas/SubscriptionRequest'
+        - $ref: '#/components/schemas/SubscriptionRequestDebug'
+        - type: object
+          properties:
+            ad:
+              $ref: '#/components/schemas/SubscriptionOffersObject'
+
     PaymentCreateObject:
       allOf:
         - $ref: '#/components/schemas/BasePayment'
@@ -538,6 +574,12 @@ components:
       allOf:
         - $ref: '#/components/schemas/SubscriptionResponse'
         - $ref: '#/components/schemas/SubscriptionResponseSingle'
+
+    SubscriptionOffersResponse:
+      allOf:
+        - $ref: '#/components/schemas/SubscriptionResponse'
+        - $ref: '#/components/schemas/SubscriptionResponseSingle'
+        - $ref: '#/components/schemas/SubscriptionResponseMulti'
 
     PaymentResponseObject:
       allOf:

@@ -62,16 +62,16 @@ fun Application.module() {
 
         route("v1") {
             subscription()
-            offersSubscription()
+            subscriptionOffers()
         }
 
         route("v1") {
             payment()
         }
 
-        webSocket("/ws") {
-            wsHandlerV1()
-        }
+//        webSocket("/ws") {
+//            wsHandlerV1()
+//        }
 
         static("static") {
             resources("static")

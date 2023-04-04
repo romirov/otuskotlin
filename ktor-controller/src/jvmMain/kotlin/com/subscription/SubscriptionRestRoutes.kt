@@ -25,3 +25,11 @@ fun Route.subscription() {
         }
     }
 }
+
+fun Route.subscriptionOffers() {
+    route("subscription") {
+        post("offers") {
+            call.offersSubscription()
+        }
+    }
+}
