@@ -482,7 +482,7 @@ components:
         - $ref: '#/components/schemas/SubscriptionRequestDebug'
         - type: object
           properties:
-            ad:
+            subscription:
               $ref: '#/components/schemas/SubscriptionOffersObject'
 
     PaymentCreateObject:

@@ -6,6 +6,7 @@ import org.jetbrains.kotlin.util.suffixIfNot
 val ktorVersion: String by project
 val kotlinVersion: String by project
 val logbackVersion: String by project
+val kotlinLoggingJvmVersion: String by project
 val serializationVersion: String by project
 
 fun ktor(module: String, prefix: String = "server-", version: String? = this@Build_gradle.ktorVersion): Any =
@@ -99,10 +100,12 @@ kotlin {
                 implementation(ktor("test-host"))
                 implementation(ktor("content-negotiation", prefix = "client-"))
                 implementation(ktor("websockets", prefix = "client-"))
+                implementation("ch.qos.logback:logback-classic:$logbackVersion")
+                implementation("io.github.microutils:kotlin-logging-jvm:$kotlinLoggingJvmVersion")
             }
         }
     }
-    jvmToolchain(11)
+    jvmToolchain(17)
 }
 
 tasks {
