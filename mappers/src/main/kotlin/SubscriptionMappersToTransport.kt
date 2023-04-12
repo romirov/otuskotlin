@@ -12,6 +12,7 @@ fun Context.toTransportSubscription(): SubscriptionResponse = when (val cmd = co
     Command.DELETE -> toTransportSubscriptionDelete()
     Command.SEARCH -> toTransportSubscriptionSearch()
     Command.STATUS -> toTransportSubscriptionStatus()
+    Command.OFFERS -> toTransportSubscriptionOffers()
     else -> throw UnknownSubscriptionCommand(cmd)
 }
 

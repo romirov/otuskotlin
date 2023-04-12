@@ -50,10 +50,10 @@ suspend fun ApplicationCall.searchSubscription() {
 }
 
 suspend fun ApplicationCall.statusSubscription() {
-    val request = receive<SubscriptionSearchRequest>()
+    val request = receive<SubscriptionStatusRequest>()
     val context = Context()
     context.fromSubscriptionTransport(request)
-    context.subscriptionsResponse.addAll(SubscriptionStub.prepareSearchList("Подписка", DealSide.DEMAND))
+    context.subscriptionResponse = SubscriptionStub.get()
     respond(context.toTransportSubscriptionStatus())
 }
 

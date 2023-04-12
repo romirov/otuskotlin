@@ -13,6 +13,7 @@ fun Context.fromSubscriptionTransport(request: SubscriptionRequest) = when (requ
     is SubscriptionDeleteRequest -> fromSubscriptionTransport(request)
     is SubscriptionSearchRequest -> fromSubscriptionTransport(request)
     is SubscriptionStatusRequest -> fromSubscriptionTransport(request)
+    is SubscriptionOffersRequest -> fromSubscriptionTransport(request)
     else -> throw UnknownRequestClass(request.javaClass)
 }
 
@@ -79,9 +80,17 @@ fun Context.fromSubscriptionTransport(request: SubscriptionSearchRequest) {
 }
 
 fun Context.fromSubscriptionTransport(request: SubscriptionStatusRequest) {
-    command = Command.UPDATE
+    command = Command.STATUS
     requestId = request.requestId()
     subscriptionRequest = request.subscription?.toInternal() ?: Subscription()
+    workMode = request.debug.transportToWorkMode()
+    stubCase = request.debug.transportToStubCase()
+}
+
+fun Context.fromSubscriptionTransport(request: SubscriptionOffersRequest) {
+    command = Command.OFFERS
+    requestId = request.requestId()
+    subscriptionRequest = request.subscription?.id.toSubscriptionWithId()
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()
 }

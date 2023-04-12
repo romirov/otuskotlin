@@ -8,6 +8,7 @@ enum class Command {
     DELETE,
     SEARCH,
     STATUS,
+    OFFERS,
     PAY,
     ROLLBACK
 }

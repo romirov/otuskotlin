@@ -24,5 +24,13 @@ kotlin {
                 implementation(kotlin("test-annotations-common"))
             }
         }
+
+        val jvmMain by getting {
+            dependencies {
+                implementation(kotlin("stdlib-jdk8"))
+
+                api("org.jetbrains.kotlinx:kotlinx-datetime:$datetimeVersion")
+            }
+        }
     }
 }

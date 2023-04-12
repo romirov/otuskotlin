@@ -141,7 +141,7 @@ class V1SubscriptionStubApiTest {
         val response = client.post("/v1/subscription/status") {
             val requestObj = SubscriptionStatusRequest(
                 requestId = "11",
-                subscription = SubscriptionStatusObject("1"),
+                subscription = SubscriptionStatusObject(id = "1"),
                 debug = SubscriptionDebug(
                     mode = SubscriptionRequestDebugMode.STUB,
                     stub = SubscriptionRequestDebugStubs.SUCCESS
@@ -175,7 +175,7 @@ class V1SubscriptionStubApiTest {
         }
         val responseObj = response.body<SubscriptionOffersResponse>()
         assertEquals(200, response.status.value)
-        assertEquals("d-1-01", responseObj.subscriptions?.first()?.id)
+        assertEquals("s-1-01", responseObj.subscriptions?.first()?.id)
     }
 
     private fun ApplicationTestBuilder.myClient() = createClient {

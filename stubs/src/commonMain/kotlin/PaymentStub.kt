@@ -6,7 +6,7 @@ object SomePaymentStub {
         subscriptionID = SubscriptionId("1"),
         title = "",
         description = "",
-        price = 1.0,
+        price = 1.0.toBigDecimal(),
         ownerId = UserId("1"),
         paymentStatus = PaymentStatus.PASSED
     )
