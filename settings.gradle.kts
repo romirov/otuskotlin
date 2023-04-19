@@ -21,10 +21,16 @@ pluginManagement {
 }
 
 //include("m1l1-helloworld")
+include("lib-logging-common")
+include("lib-logging-logback")
+
 include("api")
+
 include("common")
 include("mappers")
+
 include("stubs")
+include("biz")
+
 include("ktor-controller")
 include("transport")
-include("biz")
