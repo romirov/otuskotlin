@@ -65,6 +65,7 @@ kotlin {
                 implementation(ktor("jackson", "serialization"))
                 implementation(ktor("content-negotiation"))
                 implementation(ktor("kotlinx-json", "serialization"))
+                implementation(project(":lib-logging-logback"))
 
                 implementation(ktor("locations"))
                 implementation(ktor("caching-headers"))

@@ -1,5 +1,3 @@
-package com.subscription
-
 import io.ktor.http.*
 import io.ktor.serialization.jackson.*
 import io.ktor.server.application.*

@@ -2,7 +2,7 @@ package ru.otus.otuskotlin.logging
 
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
-import ru.otus.otuskotlin.lib.logging.logback.mpLoggerLogback
+import ru.otus.otuskotlin.lib.logging.logback.sLoggerLogback
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 import kotlin.test.assertTrue
@@ -36,7 +36,7 @@ class LoggerTest {
 
         try {
             runBlocking {
-                val logger = mpLoggerLogback(this::class)
+                val logger = sLoggerLogback(this::class)
                 logger.doWithLogging(logId, block = block)
             }
         } catch (ignore: RuntimeException) {

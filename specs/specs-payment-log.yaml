@@ -1,0 +1,81 @@
+openapi: 3.0.4
+info:
+  title: Payment log models
+  description: Log models for logging services of subscription
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+paths: {}
+
+components:
+  schemas:
+    CommonPaymentLogModel:
+      title: Общая модель лога
+      description: Общая модель лога для всех микросервисов оплаты в системе
+      type: object
+      properties:
+        messageTime:
+          type: string
+        logId:
+          type: string
+        source:
+          type: string
+        payment:
+          $ref: '#/components/schemas/PaymentLogModel'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentErrorLogModel'
+
+    PaymentLogModel:
+      title: Модель лога для микросервиса Payment
+      type: object
+      properties:
+        requestId:
+          type: string
+        operation:
+          type: string
+          enum:
+            - pay
+            - rollback
+        requestPayment:
+          $ref: '#/components/schemas/PaymentLog'
+        responsePayment:
+          $ref: '#/components/schemas/PaymentLog'
+        responsePayments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentLog'
+
+    PaymentErrorLogModel:
+      title: Модель лога для ошибки
+      type: object
+      properties:
+        message:
+          type: string
+        field:
+          type: string
+        code:
+          type: string
+        level:
+          type: string
+
+    PaymentLog:
+      title: Модель лога для оплаты
+      type: object
+      properties:
+        id:
+          type: string
+        subscriptionId:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        price:
+          type: string
+        ownerId:
+          type: string
+        paymentStatus:
+          type: string

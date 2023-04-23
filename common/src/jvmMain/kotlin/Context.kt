@@ -6,6 +6,7 @@ data class Context(
     var command: Command = Command.NONE,
     var state: State = State.NONE,
     val errors: MutableList<CommonError> = mutableListOf(),
+    var settings: CorSettings = CorSettings.NONE,
 
     var workMode: WorkMode = WorkMode.PROD,
     var stubCase: Stubs = Stubs.NONE,
@@ -18,5 +19,6 @@ data class Context(
     var subscriptionsResponse: MutableList<Subscription> = mutableListOf(),
 
     var paymentRequest: Payment = Payment(),
-    var paymentResponse: Payment = Payment()
+    var paymentResponse: Payment = Payment(),
+    var paymentsResponse: MutableList<Payment> = mutableListOf(),
 )

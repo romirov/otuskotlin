@@ -1,4 +1,4 @@
-package com.Subscription.stubs
+package ru.otus.otuskotlin.ktor.stubs
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.SerializationFeature

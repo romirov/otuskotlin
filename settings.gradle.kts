@@ -25,8 +25,11 @@ include("lib-logging-common")
 include("lib-logging-logback")
 
 include("api")
+include("api-subscription-log")
+include("api-payment-log")
 
 include("common")
+include("mappers-log")
 include("mappers")
 
 include("stubs")

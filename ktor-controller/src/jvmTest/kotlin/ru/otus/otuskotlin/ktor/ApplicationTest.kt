@@ -1,4 +1,4 @@
-package com.Subscription
+package ru.otus.otuskotlin.ktor
 
 import io.ktor.client.request.*
 import io.ktor.client.statement.*

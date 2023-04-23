@@ -1,5 +1,3 @@
-package com.subscription
-
 import Context
 import PaymentStub
 import io.ktor.server.application.*
