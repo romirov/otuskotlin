@@ -17,49 +17,49 @@ fun Context.toTransportSubscription(): SubscriptionResponse = when (val cmd = co
 }
 
 fun Context.toTransportSubscriptionCreate() = SubscriptionCreateResponse(
-    requestId = this.requestId.asString().takeIf { it.isNotBlank() },
+    requestId = this.subscriptionRequestId.asString().takeIf { it.isNotBlank() },
     result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     subscription = subscriptionResponse.toTransportSubscription()
 )
 
 fun Context.toTransportSubscriptionRead() = SubscriptionReadResponse(
-    requestId = this.requestId.asString().takeIf { it.isNotBlank() },
+    requestId = this.subscriptionRequestId.asString().takeIf { it.isNotBlank() },
     result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     subscription = subscriptionResponse.toTransportSubscription()
 )
 
 fun Context.toTransportSubscriptionUpdate() = SubscriptionUpdateResponse(
-    requestId = this.requestId.asString().takeIf { it.isNotBlank() },
+    requestId = this.subscriptionRequestId.asString().takeIf { it.isNotBlank() },
     result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     subscription = subscriptionResponse.toTransportSubscription()
 )
 
 fun Context.toTransportSubscriptionDelete() = SubscriptionDeleteResponse(
-    requestId = this.requestId.asString().takeIf { it.isNotBlank() },
+    requestId = this.subscriptionRequestId.asString().takeIf { it.isNotBlank() },
     result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     subscription = subscriptionResponse.toTransportSubscription()
 )
 
 fun Context.toTransportSubscriptionSearch() = SubscriptionSearchResponse(
-    requestId = this.requestId.asString().takeIf { it.isNotBlank() },
+    requestId = this.subscriptionRequestId.asString().takeIf { it.isNotBlank() },
     result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     subscriptions = subscriptionsResponse.toTransportSubscription()
 )
 
 fun Context.toTransportSubscriptionStatus() = SubscriptionStatusResponse(
-    requestId = this.requestId.asString().takeIf { it.isNotBlank() },
+    requestId = this.subscriptionRequestId.asString().takeIf { it.isNotBlank() },
     result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     subscription = subscriptionResponse.toTransportSubscription()
 )
 
 fun Context.toTransportSubscriptionOffers() = SubscriptionOffersResponse(
-    requestId = this.requestId.asString().takeIf { it.isNotBlank() },
+    requestId = this.subscriptionRequestId.asString().takeIf { it.isNotBlank() },
     result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
     subscriptions = subscriptionsResponse.toTransportSubscription()
@@ -71,7 +71,7 @@ fun List<Subscription>.toTransportSubscription(): List<SubscriptionResponseObjec
     .takeIf { it.isNotEmpty() }
 
 private fun Subscription.toTransportSubscription(): SubscriptionResponseObject = SubscriptionResponseObject(
-    id = id.takeIf { it != SubscriptionId.NONE }?.asString(),
+    id = id.takeIf { it != SubscriptionRequestId.NONE }?.asString(),
     title = title.takeIf { it.isNotBlank() },
     description = description.takeIf { it.isNotBlank() },
 )

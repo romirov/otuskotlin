@@ -13,7 +13,7 @@ fun Context.toSubscriptionLog(logId: String) = CommonSubscriptionLogModel(
 fun Context.toSubscriptionLog(): SubscriptionLogModel? {
     val subscriptionNone = Subscription()
     return SubscriptionLogModel(
-        requestId = requestId.takeIf { it != RequestId.NONE }?.asString(),
+        requestId = subscriptionRequestId.takeIf { it != SubscriptionRequestId.NONE }?.asString(),
         requestSubscription = subscriptionRequest.takeIf { it != subscriptionNone }?.toSubscriptionLog(),
         responseSubscription = subscriptionResponse.takeIf { it != subscriptionNone }?.toSubscriptionLog(),
         responseSubscriptions = subscriptionsResponse.takeIf { it.isNotEmpty() }?.filter { it != subscriptionNone }?.map { it.toSubscriptionLog() },
@@ -35,7 +35,7 @@ fun CommonError.toSubscriptionLog() = SubscriptionErrorLogModel(
 )
 
 fun Subscription.toSubscriptionLog() = SubscriptionLog(
-    id = id.takeIf { it != SubscriptionId.NONE }?.asString(),
+    id = id.takeIf { it != SubscriptionRequestId.NONE }?.asString(),
     title = title.takeIf { it.isNotBlank() },
     description = description.takeIf { it.isNotBlank() },
     subscriptionType = subscriptionType.takeIf { it != DealSide.NONE }?.name,

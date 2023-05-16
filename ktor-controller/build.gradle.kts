@@ -41,6 +41,7 @@ kotlin {
                 implementation(project(":common"))
                 implementation(project(":api"))
                 implementation(project(":mappers"))
+                implementation(project(":mappers-log"))
                 implementation(project(":stubs"))
 
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
@@ -86,9 +87,7 @@ kotlin {
                 implementation(project(":common"))
                 implementation(project(":api"))
                 implementation(project(":mappers"))
-
-                // v2 api
-                //implementation(project(":ok-marketplace-mappers-v2"))
+                implementation(project(":lib-logging-common"))
 
                 // Stubs
                 implementation(project(":stubs"))

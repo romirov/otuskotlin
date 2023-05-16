@@ -17,9 +17,9 @@ fun Context.fromSubscriptionTransport(request: SubscriptionRequest) = when (requ
     else -> throw UnknownRequestClass(request.javaClass)
 }
 
-private fun String?.toSubscriptionId() = this?.let { SubscriptionId(it) } ?: SubscriptionId.NONE
+private fun String?.toSubscriptionId() = this?.let { SubscriptionRequestId(it) } ?: SubscriptionRequestId.NONE
 private fun String?.toSubscriptionWithId() = Subscription(id = this.toSubscriptionId())
-private fun SubscriptionRequest?.requestId() = this?.requestId?.let { RequestId(it) } ?: RequestId.NONE
+private fun SubscriptionRequest?.requestId() = this?.requestId?.let { SubscriptionRequestId(it) } ?: SubscriptionRequestId.NONE
 
 private fun SubscriptionDebug?.transportToWorkMode(): WorkMode = when (this?.mode) {
     SubscriptionRequestDebugMode.PROD -> WorkMode.PROD
@@ -41,7 +41,7 @@ private fun SubscriptionDebug?.transportToStubCase(): Stubs = when (this?.stub) 
 
 fun Context.fromSubscriptionTransport(request: SubscriptionCreateRequest) {
     command = Command.CREATE
-    requestId = request.requestId()
+    subscriptionRequestId = request.requestId()
     subscriptionRequest = request.subscription?.toInternal() ?: Subscription()
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()
@@ -49,7 +49,7 @@ fun Context.fromSubscriptionTransport(request: SubscriptionCreateRequest) {
 
 fun Context.fromSubscriptionTransport(request: SubscriptionReadRequest) {
     command = Command.READ
-    requestId = request.requestId()
+    subscriptionRequestId = request.requestId()
     subscriptionRequest = request.subscription?.id.toSubscriptionWithId()
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()
@@ -57,7 +57,7 @@ fun Context.fromSubscriptionTransport(request: SubscriptionReadRequest) {
 
 fun Context.fromSubscriptionTransport(request: SubscriptionUpdateRequest) {
     command = Command.UPDATE
-    requestId = request.requestId()
+    subscriptionRequestId = request.requestId()
     subscriptionRequest = request.subscription?.toInternal() ?: Subscription()
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()
@@ -65,7 +65,7 @@ fun Context.fromSubscriptionTransport(request: SubscriptionUpdateRequest) {
 
 fun Context.fromSubscriptionTransport(request: SubscriptionDeleteRequest) {
     command = Command.DELETE
-    requestId = request.requestId()
+    subscriptionRequestId = request.requestId()
     subscriptionRequest = request.subscription?.id.toSubscriptionWithId()
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()
@@ -73,7 +73,7 @@ fun Context.fromSubscriptionTransport(request: SubscriptionDeleteRequest) {
 
 fun Context.fromSubscriptionTransport(request: SubscriptionSearchRequest) {
     command = Command.SEARCH
-    requestId = request.requestId()
+    subscriptionRequestId = request.requestId()
     subscriptionFilterRequest = request.subscriptionFilter.toInternal()
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()
@@ -81,7 +81,7 @@ fun Context.fromSubscriptionTransport(request: SubscriptionSearchRequest) {
 
 fun Context.fromSubscriptionTransport(request: SubscriptionStatusRequest) {
     command = Command.STATUS
-    requestId = request.requestId()
+    subscriptionRequestId = request.requestId()
     subscriptionRequest = request.subscription?.toInternal() ?: Subscription()
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()
@@ -89,7 +89,7 @@ fun Context.fromSubscriptionTransport(request: SubscriptionStatusRequest) {
 
 fun Context.fromSubscriptionTransport(request: SubscriptionOffersRequest) {
     command = Command.OFFERS
-    requestId = request.requestId()
+    subscriptionRequestId = request.requestId()
     subscriptionRequest = request.subscription?.id.toSubscriptionWithId()
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()

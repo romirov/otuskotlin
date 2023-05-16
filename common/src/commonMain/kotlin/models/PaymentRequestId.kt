@@ -1,12 +1,11 @@
 package models
 
 import kotlin.jvm.JvmInline
-
 @JvmInline
-value class RequestId(private val id: String) {
+value class PaymentRequestId(private val id: String) {
     fun asString() = id
 
     companion object {
-        val NONE = RequestId("")
+        val NONE = PaymentRequestId("")
     }
 }

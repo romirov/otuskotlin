@@ -14,13 +14,13 @@ fun Context.toTransportPayment(): PaymentResponse = when (val cmd = command) {
 }
 
 fun Context.toTransportPaymentCreate() = PaymentCreateResponse(
-    requestId = this.requestId.asString().takeIf { it.isNotBlank() },
+    requestId = this.subscriptionRequestId.asString().takeIf { it.isNotBlank() },
     result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors(),
 )
 
 fun Context.toTransportPaymentStatus() = PaymentStatusResponse(
-    requestId = this.requestId.asString().takeIf { it.isNotBlank() },
+    requestId = this.subscriptionRequestId.asString().takeIf { it.isNotBlank() },
     result = if (state == models.State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors()
 )

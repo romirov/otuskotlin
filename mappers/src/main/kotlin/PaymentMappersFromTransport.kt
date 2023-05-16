@@ -13,9 +13,9 @@ fun Context.fromPaymentTransport(request: PaymentRequest) = when (request) {
     else -> throw UnknownRequestClass(request.javaClass)
 }
 
-private fun String?.toPaymentId() = this?.let { PaymentId(it) } ?: PaymentId.NONE
+private fun String?.toPaymentId() = this?.let { PaymentRequestId(it) } ?: PaymentRequestId.NONE
 private fun String?.toPaymentWithId() = Payment(id = this.toPaymentId())
-private fun PaymentRequest?.requestId() = this?.requestId?.let { RequestId(it) } ?: RequestId.NONE
+private fun PaymentRequest?.requestId() = this?.requestId?.let { PaymentRequestId(it) } ?: PaymentRequestId.NONE
 
 private fun PaymentDebug?.transportToWorkMode(): WorkMode = when (this?.mode) {
     PaymentRequestDebugMode.PROD -> WorkMode.PROD
@@ -35,7 +35,7 @@ private fun PaymentDebug?.transportToStubCase(): Stubs = when (this?.stub) {
 
 fun Context.fromPaymentTransport(request: PaymentCreateRequest) {
     command = Command.CREATE
-    requestId = request.requestId()
+    paymentRequestId = request.requestId()
     paymentRequest = request.payment?.toInternal() ?: Payment()
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()
@@ -43,7 +43,7 @@ fun Context.fromPaymentTransport(request: PaymentCreateRequest) {
 
 fun Context.fromPaymentTransport(request: PaymentStatusRequest) {
     command = Command.STATUS
-    requestId = request.requestId()
+    paymentRequestId = request.requestId()
     paymentRequest = request.payment?.id.toPaymentWithId()
     workMode = request.debug.transportToWorkMode()
     stubCase = request.debug.transportToStubCase()

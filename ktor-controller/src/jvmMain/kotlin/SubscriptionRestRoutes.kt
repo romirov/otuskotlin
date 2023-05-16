@@ -1,33 +1,38 @@
+package ru.otus.otuskotlin.app
+
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
+import ru.otus.otuskotlin.app.*
 
-fun Route.subscription() {
+fun Route.subscription(appSettings: SAppSettings) {
+    val logger = appSettings.corSettings.loggerProvider.logger(Route::subscription::class)
     route("subscription") {
         post("create") {
-            call.createSubscription()
+            call.createSubscription(appSettings, logger)
         }
         post("read") {
-            call.readSubscription()
+            call.readSubscription(appSettings, logger)
         }
         post("update") {
-            call.updateSubscription()
+            call.updateSubscription(appSettings, logger)
         }
         post("delete") {
-            call.deleteSubscription()
+            call.deleteSubscription(appSettings, logger)
         }
         post("search") {
-            call.searchSubscription()
+            call.searchSubscription(appSettings, logger)
         }
         post("status") {
-            call.statusSubscription()
+            call.statusSubscription(appSettings, logger)
         }
     }
 }
 
-fun Route.subscriptionOffers() {
+fun Route.subscriptionOffers(appSettings: SAppSettings) {
+    val logger = appSettings.corSettings.loggerProvider.logger(Route::subscriptionOffers::class)
     route("subscription") {
         post("offers") {
-            call.offersSubscription()
+            call.offersSubscription(appSettings, logger)
         }
     }
 }

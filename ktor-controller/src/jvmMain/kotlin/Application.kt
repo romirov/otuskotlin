@@ -1,3 +1,5 @@
+package ru.otus.otuskotlin.app
+
 import io.ktor.http.*
 import io.ktor.serialization.jackson.*
 import io.ktor.server.application.*
@@ -14,18 +16,20 @@ import io.ktor.server.routing.*
 import io.ktor.server.websocket.*
 import org.slf4j.event.Level
 import ru.otus.otuskotlin.api.apiV1Mapper
+import ru.otus.otuskotlin.app.plugins.initAppSettings
+import ru.otus.otuskotlin.app.plugins.swagger
+import ru.otus.otuskotlin.lib.logging.logback.SLogWrapperLogback
 
-fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
+private val clazz = Application::module::class.qualifiedName ?: "Application"
 
-@Suppress("unused") // Referenced in application.conf
-fun Application.module() {
+@Suppress("unused") // Referenced in application.conf_
+fun Application.module(appSettings: SAppSettings = initAppSettings()) {
     // Generally not needed as it is replaced by a `routing`
     install(Routing)
 
     install(CachingHeaders)
     install(DefaultHeaders)
     install(AutoHeadResponse)
-    install(WebSockets)
 
     install(CORS) {
         allowMethod(HttpMethod.Options)
@@ -38,16 +42,20 @@ fun Application.module() {
         anyHost() // TODO remove
     }
 
+    install(CallLogging) {
+        level = Level.INFO
+        val lgr = appSettings
+            .corSettings
+            .loggerProvider
+            .logger(clazz) as? SLogWrapperLogback
+        lgr?.logger?.also { logger = it }
+    }
+
     install(ContentNegotiation) {
         jackson {
             setConfig(apiV1Mapper.serializationConfig)
             setConfig(apiV1Mapper.deserializationConfig)
         }
-    }
-
-
-    install(CallLogging) {
-        level = Level.INFO
     }
 
     @Suppress("OPT_IN_USAGE")
@@ -59,18 +67,19 @@ fun Application.module() {
         }
 
         route("v1") {
-            subscription()
-            subscriptionOffers()
+            subscription(appSettings)
+            subscriptionOffers(appSettings)
         }
 
         route("v1") {
-            payment()
+            payment(appSettings)
         }
 
-//        webSocket("/ws") {
-//            wsHandlerV1()
-//        }
+        static("static") {
+            resources("static")
+        }
 
+        swagger(appSettings)
         static("static") {
             resources("static")
         }

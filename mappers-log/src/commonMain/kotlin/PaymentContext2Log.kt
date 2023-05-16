@@ -17,7 +17,7 @@ fun Context.toPaymentLog(logId: String) = CommonPaymentLogModel(
 fun Context.toPaymentLog(): PaymentLogModel? {
     val paymentNone = Payment()
     return PaymentLogModel(
-        requestId = requestId.takeIf { it != RequestId.NONE }?.asString(),
+        requestId = paymentRequestId.takeIf { it != PaymentRequestId.NONE }?.asString(),
         requestPayment = paymentRequest.takeIf { it != paymentNone }?.toPaymentLog(),
         responsePayment = paymentResponse.takeIf { it != paymentNone }?.toPaymentLog(),
         responsePayments = paymentsResponse.takeIf { it.isNotEmpty() }?.filter { it != paymentNone }
@@ -33,8 +33,8 @@ fun CommonError.toPaymentLog() = PaymentErrorLogModel(
 )
 
 fun Payment.toPaymentLog() = PaymentLog(
-    id = id.takeIf { it != PaymentId.NONE }?.asString(),
-    subscriptionId = id.takeIf { it != PaymentId.NONE }.toString(),
+    id = id.takeIf { it != PaymentRequestId.NONE }?.asString(),
+    subscriptionId = id.takeIf { it != PaymentRequestId.NONE }.toString(),
     title = title.takeIf { it.isNotBlank() },
     description = description.takeIf { it.isNotBlank() },
     price = price.takeIf { it != BigDecimal.ZERO }.toString(),

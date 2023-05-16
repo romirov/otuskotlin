@@ -3,7 +3,7 @@ import models.*
 object SomeSubscriptionStub {
     val SUBSCRIPTION_DEMAND: Subscription
         get() = Subscription(
-            id = SubscriptionId("1"),
+            id = SubscriptionRequestId("1"),
             title = "PostgreSQL cloud service",
             description = "PostgreSQL cloud database service",
             productId = ProductId("1"),
@@ -43,7 +43,7 @@ object SubscriptionStub {
         getSubscription(SomeSubscriptionStub.SUBSCRIPTION_SUPPLY, id = id, filter = filter, type = type)
 
     private fun getSubscription(base: Subscription, id: String, filter: String, type: DealSide) = base.copy(
-        id = SubscriptionId(id),
+        id = SubscriptionRequestId(id),
         title = "$filter $id",
         description = "desc $filter $id",
         subscriptionType = type

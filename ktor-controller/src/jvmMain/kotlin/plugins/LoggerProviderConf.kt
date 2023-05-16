@@ -1,4 +1,4 @@
-package plugins
+package ru.otus.otuskotlin.app.plugins
 
 import io.ktor.server.application.*
 import ru.otus.otuskotlin.lib.logging.logback.sLoggerLogback

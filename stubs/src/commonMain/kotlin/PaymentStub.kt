@@ -2,8 +2,8 @@ import models.*
 
 object SomePaymentStub {
     val PAYMENT_DEMAND_SOME: Payment = Payment(
-        id = PaymentId("1"),
-        subscriptionID = SubscriptionId("1"),
+        id = PaymentRequestId("1"),
+        subscriptionID = SubscriptionRequestId("1"),
         title = "",
         description = "",
         price = 1.0.toBigDecimal(),

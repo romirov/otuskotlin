@@ -1,12 +1,12 @@
-import models.PaymentId
+import models.PaymentRequestId
 import models.PaymentStatus
-import models.SubscriptionId
+import models.SubscriptionRequestId
 import models.UserId
 import java.math.BigDecimal
 
 data class Payment(
-    var id: PaymentId = PaymentId.NONE,
-    var subscriptionID: SubscriptionId = SubscriptionId.NONE,
+    var id: PaymentRequestId = PaymentRequestId.NONE,
+    var subscriptionID: SubscriptionRequestId = SubscriptionRequestId.NONE,
     var title: String = "",
     var description: String = "",
     var price: BigDecimal = 0.0.toBigDecimal(),

@@ -1,26 +1,15 @@
-import Context
-import PaymentStub
+package ru.otus.otuskotlin.app
+
 import io.ktor.server.application.*
-import io.ktor.server.request.*
-import io.ktor.server.response.*
+import models.Command
 import org.otus.otuskotlin.api.v1.models.PaymentCreateRequest
+import org.otus.otuskotlin.api.v1.models.PaymentCreateResponse
 import org.otus.otuskotlin.api.v1.models.PaymentStatusRequest
-import ru.otus.otuskotlin.mappers.fromPaymentTransport
-import ru.otus.otuskotlin.mappers.toTransportPaymentCreate
-import ru.otus.otuskotlin.mappers.toTransportPaymentStatus
+import org.otus.otuskotlin.api.v1.models.PaymentStatusResponse
+import ru.otus.otuskotlin.logging.common.SLogWrapper
 
-suspend fun ApplicationCall.createPayment() {
-    val request = receive<PaymentCreateRequest>()
-    val context = Context()
-    context.fromPaymentTransport(request)
-    context.paymentResponse = PaymentStub.get()
-    respond(context.toTransportPaymentCreate())
-}
+suspend fun ApplicationCall.createPayment(appSettings: SAppSettings, logger: SLogWrapper) =
+processPayment<PaymentCreateRequest, PaymentCreateResponse>(appSettings, logger, "payment-create", Command.CREATE)
 
-suspend fun ApplicationCall.statusPayment() {
-    val request = receive<PaymentStatusRequest>()
-    val context = Context()
-    context.fromPaymentTransport(request)
-    context.paymentResponse = PaymentStub.get()
-    respond(context.toTransportPaymentStatus())
-}
+suspend fun ApplicationCall.statusPayment(appSettings: SAppSettings, logger: SLogWrapper) =
+    processPayment<PaymentStatusRequest, PaymentStatusResponse>(appSettings, logger, "payment-status", Command.STATUS)

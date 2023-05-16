@@ -32,7 +32,7 @@ class MapperTest {
     @Test
     fun toTransport() {
         val context = Context(
-            requestId = RequestId("1234"),
+            subscriptionRequestId = SubscriptionRequestId("1234"),
             command = Command.CREATE,
             subscriptionResponse = Subscription(
                 title = "title",
