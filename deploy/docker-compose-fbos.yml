@@ -48,8 +48,8 @@ services:
       - opensearch_user=admin
       - opensearch_pass=admin
     volumes:
-      - ./volumes/fluent-bit-etc/fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
-      - ./volumes/fluent-bit-etc/parsers.conf:/fluent-bit/etc/parsers.conf
+      - ./volumes/fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
+      - ./volumes/parsers.conf:/fluent-bit/etc/parsers.conf
 
   opensearch:
     container_name: opensearch
