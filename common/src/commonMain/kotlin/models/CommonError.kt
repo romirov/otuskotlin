@@ -1,4 +1,4 @@
-package models
+package ru.otus.otuskotlin.common.models
 
 data class CommonError(
     val code: String = "",

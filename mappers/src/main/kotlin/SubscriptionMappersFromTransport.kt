@@ -1,10 +1,14 @@
 package ru.otus.otuskotlin.mappers
 
-import Context
-import models.*
 import org.otus.otuskotlin.api.v1.models.*
+import ru.otus.otuskotlin.common.Context
+import ru.otus.otuskotlin.common.Subscription
+import ru.otus.otuskotlin.common.models.Command
+import ru.otus.otuskotlin.common.models.Filter
+import ru.otus.otuskotlin.common.models.SubscriptionRequestId
+import ru.otus.otuskotlin.common.models.WorkMode
+import ru.otus.otuskotlin.common.stubs.Stubs
 import ru.otus.otuskotlin.mappers.exceptions.UnknownRequestClass
-import stubs.Stubs
 
 fun Context.fromSubscriptionTransport(request: SubscriptionRequest) = when (request) {
     is SubscriptionCreateRequest -> fromSubscriptionTransport(request)

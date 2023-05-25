@@ -1,4 +1,4 @@
-package ru.otus.otuskotlin.logging.common
+package ru.otus.otuskotlin.lib.logging.common
 
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction

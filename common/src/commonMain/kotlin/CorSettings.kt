@@ -1,4 +1,6 @@
-import ru.otus.otuskotlin.logging.common.SLoggerProvider
+package ru.otus.otuskotlin.common
+
+import ru.otus.otuskotlin.lib.logging.common.SLoggerProvider
 
 data class CorSettings(
     val loggerProvider: SLoggerProvider = SLoggerProvider(),

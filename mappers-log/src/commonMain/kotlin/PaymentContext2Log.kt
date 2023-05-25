@@ -1,9 +1,13 @@
+package ru.otus.otuskotlin.mappers.log
+
 import kotlinx.datetime.Clock
 import models.*
 import org.otus.otuskotlin.api.logs.models.CommonPaymentLogModel
 import org.otus.otuskotlin.api.logs.models.PaymentErrorLogModel
 import org.otus.otuskotlin.api.logs.models.PaymentLog
 import org.otus.otuskotlin.api.logs.models.PaymentLogModel
+import ru.otus.otuskotlin.common.Context
+import ru.otus.otuskotlin.common.models.*
 import java.math.BigDecimal
 
 fun Context.toPaymentLog(logId: String) = CommonPaymentLogModel(

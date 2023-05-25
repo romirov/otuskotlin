@@ -1,7 +1,5 @@
-import models.PaymentRequestId
-import models.PaymentStatus
-import models.SubscriptionRequestId
-import models.UserId
+package ru.otus.otuskotlin.common.models
+
 import java.math.BigDecimal
 
 data class Payment(

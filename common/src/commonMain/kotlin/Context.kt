@@ -1,6 +1,8 @@
+package ru.otus.otuskotlin.common
+
 import kotlinx.datetime.Instant
-import models.*
-import stubs.Stubs
+import ru.otus.otuskotlin.common.models.*
+import ru.otus.otuskotlin.common.stubs.Stubs
 
 data class Context(
     var command: Command = Command.NONE,

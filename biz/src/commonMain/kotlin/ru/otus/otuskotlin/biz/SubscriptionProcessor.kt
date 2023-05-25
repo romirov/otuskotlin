@@ -1,7 +1,8 @@
 package ru.otus.otuskotlin.biz
 
-import Context
-import SubscriptionStub
+import ru.otus.otuskotlin.common.Context
+import ru.otus.otuskotlin.stubs.SubscriptionStub
+
 
 class SubscriptionProcessor {
     suspend fun exec(ctx: Context) {

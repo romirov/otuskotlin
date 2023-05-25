@@ -1,4 +1,4 @@
-package models
+package ru.otus.otuskotlin.common.models
 
 data class Filter(
     var searchString: String = "",

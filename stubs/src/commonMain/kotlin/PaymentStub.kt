@@ -1,4 +1,6 @@
-import models.*
+package ru.otus.otuskotlin.stubs
+
+import ru.otus.otuskotlin.common.models.*
 
 object SomePaymentStub {
     val PAYMENT_DEMAND_SOME: Payment = Payment(

@@ -3,6 +3,9 @@ ktor {
         port = 8080
     }
     application {
-        modules = [ com.subscription.ApplicationKt.module ]
+        modules = [
+          ru.otus.otuskotlin.app.ApplicationKt.module,
+          ru.otus.otuskotlin.app.ApplicationJvmKt.moduleJvm,
+        ]
     }
 }

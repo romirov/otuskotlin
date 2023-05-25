@@ -1,4 +1,4 @@
-package ru.otus.otuskotlin.logging.common
+package ru.otus.otuskotlin.lib.logging.common
 
 import kotlinx.datetime.Clock
 import kotlin.time.ExperimentalTime

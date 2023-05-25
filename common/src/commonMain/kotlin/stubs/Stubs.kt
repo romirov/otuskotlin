@@ -1,4 +1,4 @@
-package stubs
+package ru.otus.otuskotlin.common.stubs
 
 enum class Stubs {
     NONE,

@@ -1,8 +1,8 @@
-package helpers
+package ru.otus.otuskotlin.common.helpers
 
-import Context
-import models.CommonError
-import models.State
+import ru.otus.otuskotlin.common.Context
+import ru.otus.otuskotlin.common.models.CommonError
+import ru.otus.otuskotlin.common.models.State
 
 fun Throwable.asCommonError(
     code: String = "unknown",

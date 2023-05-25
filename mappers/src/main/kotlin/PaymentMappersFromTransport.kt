@@ -1,11 +1,14 @@
 package ru.otus.otuskotlin.mappers
 
-import Context
-import Payment
 import models.*
 import org.otus.otuskotlin.api.v1.models.*
+import ru.otus.otuskotlin.common.Context
+import ru.otus.otuskotlin.common.models.Command
+import ru.otus.otuskotlin.common.models.Payment
+import ru.otus.otuskotlin.common.models.PaymentRequestId
+import ru.otus.otuskotlin.common.models.WorkMode
+import ru.otus.otuskotlin.common.stubs.Stubs
 import ru.otus.otuskotlin.mappers.exceptions.UnknownRequestClass
-import stubs.Stubs
 
 fun Context.fromPaymentTransport(request: PaymentRequest) = when (request) {
     is PaymentCreateRequest -> fromPaymentTransport(request)

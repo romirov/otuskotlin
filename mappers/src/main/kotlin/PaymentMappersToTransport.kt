@@ -1,10 +1,10 @@
 package ru.otus.otuskotlin.mappers
 
-import Context
-import models.Command
-import models.CommonError
-import models.State
 import org.otus.otuskotlin.api.v1.models.*
+import ru.otus.otuskotlin.common.Context
+import ru.otus.otuskotlin.common.models.Command
+import ru.otus.otuskotlin.common.models.CommonError
+import ru.otus.otuskotlin.common.models.State
 import ru.otus.otuskotlin.mappers.exceptions.UnknownSubscriptionCommand
 
 fun Context.toTransportPayment(): PaymentResponse = when (val cmd = command) {
@@ -21,7 +21,7 @@ fun Context.toTransportPaymentCreate() = PaymentCreateResponse(
 
 fun Context.toTransportPaymentStatus() = PaymentStatusResponse(
     requestId = this.subscriptionRequestId.asString().takeIf { it.isNotBlank() },
-    result = if (state == models.State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
+    result = if (state == State.RUNNING) ResponseResult.SUCCESS else ResponseResult.ERROR,
     errors = errors.toTransportErrors()
 )
 

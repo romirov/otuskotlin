@@ -29,6 +29,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib-jdk8"))
 
+                api(project(":lib-logging-common"))
                 api("org.jetbrains.kotlinx:kotlinx-datetime:$datetimeVersion")
             }
         }

@@ -2,7 +2,7 @@ package ru.otus.otuskotlin.lib.logging.logback
 
 import ch.qos.logback.classic.Logger
 import org.slf4j.LoggerFactory
-import ru.otus.otuskotlin.logging.common.SLogWrapper
+import ru.otus.otuskotlin.lib.logging.common.SLogWrapper
 import kotlin.reflect.KClass
 
 /**

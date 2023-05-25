@@ -1,4 +1,11 @@
+package ru.otus.otuskotlin.stubs
+
 import models.*
+import ru.otus.otuskotlin.common.Subscription
+import ru.otus.otuskotlin.common.models.DealSide
+import ru.otus.otuskotlin.common.models.ProductId
+import ru.otus.otuskotlin.common.models.SubscriptionRequestId
+import ru.otus.otuskotlin.common.models.SubscriptionStatus
 
 object SomeSubscriptionStub {
     val SUBSCRIPTION_DEMAND: Subscription

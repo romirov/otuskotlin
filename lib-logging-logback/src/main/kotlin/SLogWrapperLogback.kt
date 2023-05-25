@@ -6,8 +6,8 @@ import org.slf4j.Marker
 import org.slf4j.event.KeyValuePair
 import org.slf4j.event.Level
 import org.slf4j.event.LoggingEvent
-import ru.otus.otuskotlin.logging.common.LogLevel
-import ru.otus.otuskotlin.logging.common.SLogWrapper
+import ru.otus.otuskotlin.lib.logging.common.LogLevel
+import ru.otus.otuskotlin.lib.logging.common.SLogWrapper
 import java.time.Instant
 
 class SLogWrapperLogback(

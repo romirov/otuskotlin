@@ -1,6 +1,10 @@
+package ru.otus.otuskotlin.mappers.log
+
 import kotlinx.datetime.Clock
-import models.*
 import org.otus.otuskotlin.api.logs.models.*
+import ru.otus.otuskotlin.common.Context
+import ru.otus.otuskotlin.common.Subscription
+import ru.otus.otuskotlin.common.models.*
 
 fun Context.toSubscriptionLog(logId: String) = CommonSubscriptionLogModel(
     messageTime = Clock.System.now().toString(),

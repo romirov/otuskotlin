@@ -1,7 +1,8 @@
 package ru.otus.otuskotlin.biz
 
-import Context
-import Payment
+import ru.otus.otuskotlin.common.Context
+import ru.otus.otuskotlin.stubs.PaymentStub
+
 
 class PaymentProcessor {
     suspend fun exec(ctx: Context) {

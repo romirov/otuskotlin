@@ -1,8 +1,12 @@
 package ru.otus.otuskotlin.mappers
 
-import Context
-import models.*
 import org.otus.otuskotlin.api.v1.models.*
+import ru.otus.otuskotlin.common.Context
+import ru.otus.otuskotlin.common.Subscription
+import ru.otus.otuskotlin.common.models.Command
+import ru.otus.otuskotlin.common.models.CommonError
+import ru.otus.otuskotlin.common.models.State
+import ru.otus.otuskotlin.common.models.SubscriptionRequestId
 import ru.otus.otuskotlin.mappers.exceptions.UnknownSubscriptionCommand
 
 fun Context.toTransportSubscription(): SubscriptionResponse = when (val cmd = command) {

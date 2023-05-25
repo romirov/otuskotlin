@@ -1,19 +1,19 @@
 package ru.otus.otuskotlin.app
 
-import Context
-import helpers.asCommonError
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import kotlinx.datetime.Clock
-import models.Command
-import models.State
 import org.otus.otuskotlin.api.v1.models.PaymentRequest
 import org.otus.otuskotlin.api.v1.models.PaymentResponse
-import ru.otus.otuskotlin.logging.common.SLogWrapper
+import ru.otus.otuskotlin.common.Context
+import ru.otus.otuskotlin.common.helpers.asCommonError
+import ru.otus.otuskotlin.common.models.Command
+import ru.otus.otuskotlin.common.models.State
+import ru.otus.otuskotlin.lib.logging.common.SLogWrapper
 import ru.otus.otuskotlin.mappers.fromPaymentTransport
+import ru.otus.otuskotlin.mappers.log.toPaymentLog
 import ru.otus.otuskotlin.mappers.toTransportPayment
-import toPaymentLog
 
 suspend inline fun <reified Q : PaymentRequest, @Suppress("unused") reified R : PaymentResponse> ApplicationCall.processPayment(
     appSettings: SAppSettings,

@@ -1,8 +1,8 @@
 package ru.otus.otuskotlin.app
 
-import CorSettings
 import ru.otus.otuskotlin.biz.PaymentProcessor
 import ru.otus.otuskotlin.biz.SubscriptionProcessor
+import ru.otus.otuskotlin.common.CorSettings
 
 data class SAppSettings(
     val appUrls: List<String>,
