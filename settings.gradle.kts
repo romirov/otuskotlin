@@ -34,6 +34,6 @@ include("mappers")
 
 include("stubs")
 include("biz")
-
+include("lib-cor")
 include("ktor-controller")
 include("transport")
