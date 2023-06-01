@@ -9,5 +9,5 @@ data class Payment(
     var description: String = "",
     var price: BigDecimal = 0.0.toBigDecimal(),
     var ownerId: UserId = UserId.NONE,
-    val paymentStatus: PaymentStatus = PaymentStatus.NONE
+    var paymentStatus: PaymentStatus = PaymentStatus.NONE
 )

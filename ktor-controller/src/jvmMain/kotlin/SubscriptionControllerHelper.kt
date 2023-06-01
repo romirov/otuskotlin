@@ -1,4 +1,4 @@
-package ru.otus.otuskotlin.subscription.app
+package ru.otus.otuskotlin.app
 
 import io.ktor.server.application.*
 import io.ktor.server.request.*

@@ -9,6 +9,5 @@ enum class Command {
     SEARCH,
     STATUS,
     OFFERS,
-    PAY,
     ROLLBACK
 }

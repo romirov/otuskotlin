@@ -5,5 +5,6 @@ enum class State {
     PAID,
     NOT_PAID,
     RUNNING,
-    FAILING
+    FAILING,
+    FINISHING
 }

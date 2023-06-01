@@ -11,5 +11,5 @@ data class Subscription(
     var description: String = "",
     var productId: ProductId = ProductId.NONE,
     val subscriptionStatus: SubscriptionStatus = SubscriptionStatus.NONE,
-    val subscriptionType: DealSide = DealSide.NONE
+    var subscriptionType: DealSide = DealSide.NONE
 )

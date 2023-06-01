@@ -2,7 +2,6 @@ package ru.otus.otuskotlin.app
 
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
-import ru.otus.otuskotlin.subscription.app.*
 
 fun Route.subscription(appSettings: SAppSettings) {
     val logger = appSettings.corSettings.loggerProvider.logger(Route::subscription::class)
