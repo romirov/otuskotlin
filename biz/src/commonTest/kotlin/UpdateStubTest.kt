@@ -10,7 +10,7 @@ import ru.otus.otuskotlin.stubs.SubscriptionStub
 import kotlin.test.assertEquals
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class AdUpdateStubTest {
+class UpdateStubTest {
 
     private val processor = SubscriptionProcessor()
     val id = SubscriptionRequestId("2")

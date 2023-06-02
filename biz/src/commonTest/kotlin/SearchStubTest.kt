@@ -12,7 +12,7 @@ import kotlin.test.assertEquals
 import kotlin.test.fail
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class AdSearchStubTest {
+class SearchStubTest {
 
     private val processor = SubscriptionProcessor()
     val filter = Filter(searchString = "Postgre")

@@ -12,7 +12,7 @@ import kotlin.test.assertTrue
 import kotlin.test.fail
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class AdOffersStubTest {
+class OffersStubTest {
 
     private val processor = SubscriptionProcessor()
     val id = SubscriptionRequestId("2")
