@@ -6,7 +6,6 @@ import io.ktor.server.response.*
 import kotlinx.datetime.Clock
 import org.otus.otuskotlin.api.v1.models.SubscriptionRequest
 import org.otus.otuskotlin.api.v1.models.SubscriptionResponse
-import ru.otus.otuskotlin.app.SAppSettings
 import ru.otus.otuskotlin.common.Context
 import ru.otus.otuskotlin.common.helpers.asCommonError
 import ru.otus.otuskotlin.common.models.Command

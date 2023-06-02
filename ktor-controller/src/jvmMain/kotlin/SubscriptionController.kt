@@ -4,7 +4,6 @@ import io.ktor.server.application.*
 import org.otus.otuskotlin.api.v1.models.*
 import ru.otus.otuskotlin.common.models.Command
 import ru.otus.otuskotlin.lib.logging.common.SLogWrapper
-import ru.otus.otuskotlin.subscription.app.processSubscription
 
 suspend fun ApplicationCall.createSubscription(appSettings: SAppSettings, logger: SLogWrapper) =
     processSubscription<SubscriptionCreateRequest, SubscriptionCreateResponse>(appSettings, logger, "subscription-create", Command.CREATE)
