@@ -9,6 +9,7 @@ import io.ktor.server.plugins.defaultheaders.*
 import io.ktor.server.routing.*
 import org.slf4j.event.Level
 import ru.otus.otuskotlin.api.apiV1Mapper
+import ru.otus.otuskotlin.app.plugins.initAppSettings
 import ru.otus.otuskotlin.app.plugins.swagger
 import ru.otus.otuskotlin.lib.logging.logback.SLogWrapperLogback
 

@@ -13,6 +13,13 @@ data class Context(
     var workMode: WorkMode = WorkMode.PROD,
     var stubCase: Stubs = Stubs.NONE,
 
+    var subscriptionValidating: Subscription = Subscription(),
+    var subscriptionFilterValidating: Filter = Filter(),
+
+    var subscriptionValidated: Subscription = Subscription(),
+    var subscriptionFilterValidated: Filter = Filter(),
+
+
     var timeStart: Instant = Instant.NONE,
     var subscriptionRequestId: SubscriptionRequestId = SubscriptionRequestId.NONE,
     var subscriptionRequest: Subscription = Subscription(),
