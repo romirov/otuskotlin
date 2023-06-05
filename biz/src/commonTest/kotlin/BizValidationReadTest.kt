@@ -1,5 +1,6 @@
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Test
+import ru.otus.otuskotlin.biz.SubscriptionProcessor
 import ru.otus.otuskotlin.common.models.Command
 
 @OptIn(ExperimentalCoroutinesApi::class)

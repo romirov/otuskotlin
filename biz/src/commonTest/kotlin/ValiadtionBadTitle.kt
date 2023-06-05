@@ -12,7 +12,7 @@ import kotlin.test.assertNotEquals
 private val stub = SubscriptionStub.get()
 
 @OptIn(ExperimentalCoroutinesApi::class)
-fun validationTitleCorrect(command: Command, processor: SubscriptioProcessor) = runTest {
+fun validationTitleCorrect(command: Command, processor: SubscriptionProcessor) = runTest {
     val ctx = Context(
         command = command,
         state = State.NONE,
@@ -27,7 +27,7 @@ fun validationTitleCorrect(command: Command, processor: SubscriptioProcessor) = 
     processor.exec(ctx)
     assertEquals(0, ctx.errors.size)
     assertNotEquals(State.FAILING, ctx.state)
-    assertEquals("abc", ctx.subcriptionValidated.title)
+    assertEquals("abc", ctx.subscriptionValidated.title)
 }
 
 @OptIn(ExperimentalCoroutinesApi::class)
