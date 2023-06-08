@@ -1,6 +1,5 @@
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.otus.otuskotlin.api.v1.models.SubscriptionRequest
 import ru.otus.otuskotlin.biz.SubscriptionProcessor
 import ru.otus.otuskotlin.common.Context
 import ru.otus.otuskotlin.common.Subscription

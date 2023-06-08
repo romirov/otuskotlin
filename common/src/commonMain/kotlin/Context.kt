@@ -19,6 +19,11 @@ data class Context(
     var subscriptionValidated: Subscription = Subscription(),
     var subscriptionFilterValidated: Filter = Filter(),
 
+    var paymentValidating: Payment = Payment(),
+    var paymentFilterValidating: Filter = Filter(),
+
+    var paymentValidated: Payment = Payment(),
+    var paymentFilterValidated: Filter = Filter(),
 
     var timeStart: Instant = Instant.NONE,
     var subscriptionRequestId: SubscriptionRequestId = SubscriptionRequestId.NONE,

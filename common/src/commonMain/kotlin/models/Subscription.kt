@@ -12,4 +12,6 @@ data class Subscription(
     var productId: ProductId = ProductId.NONE,
     val subscriptionStatus: SubscriptionStatus = SubscriptionStatus.NONE,
     var subscriptionType: DealSide = DealSide.NONE
-)
+){
+    fun deepCopy(): Subscription = copy()
+}

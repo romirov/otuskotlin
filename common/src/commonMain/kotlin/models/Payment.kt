@@ -1,5 +1,6 @@
 package ru.otus.otuskotlin.common.models
 
+import ru.otus.otuskotlin.common.Subscription
 import java.math.BigDecimal
 
 data class Payment(
@@ -10,4 +11,6 @@ data class Payment(
     var price: BigDecimal = 0.0.toBigDecimal(),
     var ownerId: UserId = UserId.NONE,
     var paymentStatus: PaymentStatus = PaymentStatus.NONE
-)
+){
+    fun deepCopy(): Payment = copy()
+}
