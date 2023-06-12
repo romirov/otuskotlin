@@ -19,6 +19,15 @@ object SubscriptionStub {
 
     fun prepareResult(block: Subscription.() -> Unit): Subscription = get().apply(block)
 
+    fun prepareSearchStatusList(filter: String, status: SubscriptionStatus) = listOf(
+        getSubscriptionStatus("d-1-01", filter, status),
+        getSubscriptionStatus("d-1-02", filter, status),
+        getSubscriptionStatus("d-1-03", filter, status),
+        getSubscriptionStatus("d-1-04", filter, status),
+        getSubscriptionStatus("d-1-05", filter, status),
+        getSubscriptionStatus("d-1-06", filter, status),
+    )
+
     fun prepareSearchList(filter: String, type: DealSide) = listOf(
         getSubscriptionDemand("d-1-01", filter, type),
         getSubscriptionDemand("d-1-02", filter, type),
@@ -40,6 +49,9 @@ object SubscriptionStub {
     private fun getSubscriptionDemand(id: String, filter: String, type: DealSide) =
         getSubscription(get(), id = id, filter = filter, type = type)
 
+    private fun getSubscriptionStatus(id: String, filter: String, status: SubscriptionStatus) =
+        getSubscriptionStatus(get(), id = id, filter = filter, status = status)
+
     private fun getSubscriptionSupply(id: String, filter: String, type: DealSide) =
         getSubscription(get(), id = id, filter = filter, type = type)
 
@@ -48,5 +60,12 @@ object SubscriptionStub {
         title = "$filter $id",
         description = "desc $filter $id",
         subscriptionType = type
+    )
+
+    private fun getSubscriptionStatus(base: Subscription, id: String, filter: String, status: SubscriptionStatus) = base.copy(
+        id = SubscriptionRequestId(id),
+        title = "$filter $id",
+        description = "desc $filter $id",
+        subscriptionStatus = status
     )
 }

@@ -2,6 +2,8 @@ package ru.otus.otuskotlin.common
 
 import kotlinx.datetime.Instant
 import ru.otus.otuskotlin.common.models.*
+import ru.otus.otuskotlin.common.repo.IPaymentRepository
+import ru.otus.otuskotlin.common.repo.ISubscriptionRepository
 import ru.otus.otuskotlin.common.stubs.Stubs
 
 data class Context(
@@ -12,6 +14,18 @@ data class Context(
 
     var workMode: WorkMode = WorkMode.PROD,
     var stubCase: Stubs = Stubs.NONE,
+
+    var subscriptionRepo: ISubscriptionRepository = ISubscriptionRepository.NONE,
+    var subscriptionRepoRead: Subscription = Subscription(),
+    var subscriptionRepoPrepare: Subscription = Subscription(),
+    var subscriptionRepoDone: Subscription = Subscription(),
+    var subscriptionsRepoDone: MutableList<Subscription> = mutableListOf(),
+
+    var paymentRepo: IPaymentRepository = IPaymentRepository.NONE,
+    var paymentRepoRead: Payment = Payment(),
+    var paymentRepoPrepare: Payment = Payment(),
+    var paymentRepoDone: Payment = Payment(),
+    var paymentsRepoDone: MutableList<Payment> = mutableListOf(),
 
     var subscriptionValidating: Subscription = Subscription(),
     var subscriptionFilterValidating: Filter = Filter(),

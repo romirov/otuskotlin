@@ -1,11 +1,10 @@
 package ru.otus.otuskotlin.common.models
 
-import ru.otus.otuskotlin.common.Subscription
 import java.math.BigDecimal
 
 data class Payment(
     var id: PaymentRequestId = PaymentRequestId.NONE,
-    var subscriptionID: SubscriptionRequestId = SubscriptionRequestId.NONE,
+    var subscriptionId: SubscriptionRequestId = SubscriptionRequestId.NONE,
     var title: String = "",
     var description: String = "",
     var price: BigDecimal = 0.0.toBigDecimal(),

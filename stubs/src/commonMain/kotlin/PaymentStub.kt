@@ -5,7 +5,7 @@ import ru.otus.otuskotlin.common.models.*
 object SomePaymentStub {
     val PAYMENT_DEMAND_SOME: Payment = Payment(
         id = PaymentRequestId("1"),
-        subscriptionID = SubscriptionRequestId("1"),
+        subscriptionId = SubscriptionRequestId("1"),
         title = "",
         description = "",
         price = 1.0.toBigDecimal(),

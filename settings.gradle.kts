@@ -37,3 +37,7 @@ include("biz")
 include("lib-cor")
 include("ktor-controller")
 include("transport-kafka")
+
+include("repo-in-memory")
+include("repo-stubs")
+include("repo-tests")

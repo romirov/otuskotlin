@@ -6,7 +6,7 @@ interface ISubscriptionRepository {
     suspend fun updateSubscription(rq: DbSubscriptionRequest): DbSubscriptionResponse
     suspend fun deleteSubscription(rq: DbSubscriptionIdRequest): DbSubscriptionResponse
     suspend fun searchSubscription(rq: DbSubscriptionFilterRequest): DbSubscriptionsResponse
-    suspend fun statusSubscription(rq: DbSubscriptionFilterRequest): DbSubscriptionsResponse
+    suspend fun statusSubscription(rq: DbSubscriptionFilterStatusRequest): DbSubscriptionsResponse
 
     companion object {
         val NONE = object : ISubscriptionRepository {
@@ -30,7 +30,7 @@ interface ISubscriptionRepository {
                 TODO("Not yet implemented")
             }
 
-            override suspend fun statusSubscription(rq: DbSubscriptionFilterRequest): DbSubscriptionsResponse {
+            override suspend fun statusSubscription(rq: DbSubscriptionFilterStatusRequest): DbSubscriptionsResponse {
                 TODO("Not yet implemented")
             }
         }

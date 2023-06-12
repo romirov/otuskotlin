@@ -1,5 +1,7 @@
 package ru.otus.otuskotlin.biz
 
+import ru.otus.otuskotlin.biz.general.initPaymentRepo
+import ru.otus.otuskotlin.biz.general.initSubscriptionRepo
 import ru.otus.otuskotlin.biz.groups.operation
 import ru.otus.otuskotlin.biz.groups.stubs
 import ru.otus.otuskotlin.biz.validation.*
@@ -18,6 +20,8 @@ class SubscriptionProcessor {
     companion object {
         private val BusinessChain = rootChain<Context> {
             initStatus("Инициализация статуса")
+            initSubscriptionRepo("Инициализация репозитория")
+            initPaymentRepo("Инициализация репозитория")
 
             operation("Создание подписки", Command.CREATE) {
                 stubs("Обработка стабов") {
