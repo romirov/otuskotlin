@@ -1,7 +1,7 @@
 package ru.otus.otuskotlin.common.models
 
-data class Filter(
+data class SubscriptionFilter(
     var searchString: String = "",
-    var statusString: SubscriptionStatus = SubscriptionStatus.NONE,
+    var subscriptionStatus: SubscriptionStatus = SubscriptionStatus.NONE,
     var dealSide: DealSide = DealSide.NONE
 )

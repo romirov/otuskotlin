@@ -1,52 +1,52 @@
+package stub
+
+import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import ru.otus.otuskotlin.biz.SubscriptionProcessor
 import ru.otus.otuskotlin.common.Context
 import ru.otus.otuskotlin.common.Subscription
-import ru.otus.otuskotlin.common.models.Command
-import ru.otus.otuskotlin.common.models.State
-import ru.otus.otuskotlin.common.models.SubscriptionRequestId
-import ru.otus.otuskotlin.common.models.WorkMode
+import ru.otus.otuskotlin.common.models.*
 import ru.otus.otuskotlin.common.stubs.Stubs
 import ru.otus.otuskotlin.stubs.SubscriptionStub
 import kotlin.test.assertEquals
+import kotlin.test.fail
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class DeleteStubTest {
+class SearchStubTest {
 
     private val processor = SubscriptionProcessor()
-    val id = SubscriptionRequestId("1")
+    val filter = SubscriptionFilter(searchString = "Postgre")
 
     @Test
-    fun delete() = runTest {
+    fun read() = runTest {
 
         val ctx = Context(
-            command = Command.DELETE,
+            command = Command.SEARCH,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.SUCCESS,
-            subscriptionRequest = Subscription(
-                id = id,
-            ),
+            subscriptionFilterRequest = filter,
         )
         processor.exec(ctx)
-
-        val stub = SubscriptionStub.get()
-        assertEquals(stub.id, ctx.subscriptionResponse.id)
-        assertEquals(stub.title, ctx.subscriptionResponse.title)
-        assertEquals(stub.description, ctx.subscriptionResponse.description)
-        assertEquals(stub.subscriptionType, ctx.subscriptionResponse.subscriptionType)
+        assertTrue(ctx.subscriptionsResponse.size > 1)
+        val first = ctx.subscriptionsResponse.firstOrNull() ?: fail("Empty response list")
+        assertTrue(first.title.contains(filter.searchString))
+        assertTrue(first.description.contains(filter.searchString))
+        with (SubscriptionStub.get()) {
+            assertEquals(subscriptionType, first.subscriptionType)
+        }
     }
 
     @Test
     fun badId() = runTest {
         val ctx = Context(
-            command = Command.DELETE,
+            command = Command.SEARCH,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.BAD_ID,
-            subscriptionRequest = Subscription(),
+            subscriptionFilterRequest = filter,
         )
         processor.exec(ctx)
         assertEquals(Subscription(), ctx.subscriptionResponse)
@@ -57,13 +57,11 @@ class DeleteStubTest {
     @Test
     fun databaseError() = runTest {
         val ctx = Context(
-            command = Command.DELETE,
+            command = Command.SEARCH,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.DB_ERROR,
-            subscriptionRequest = Subscription(
-                id = id,
-            ),
+            subscriptionFilterRequest = filter,
         )
         processor.exec(ctx)
         assertEquals(Subscription(), ctx.subscriptionResponse)
@@ -73,13 +71,11 @@ class DeleteStubTest {
     @Test
     fun badNoCase() = runTest {
         val ctx = Context(
-            command = Command.DELETE,
+            command = Command.SEARCH,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.BAD_TITLE,
-            subscriptionRequest = Subscription(
-                id = id,
-            ),
+            subscriptionFilterRequest = filter,
         )
         processor.exec(ctx)
         assertEquals(Subscription(), ctx.subscriptionResponse)

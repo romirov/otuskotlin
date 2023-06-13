@@ -21,13 +21,13 @@ fun Context.toSubscriptionLog(): SubscriptionLogModel? {
         requestSubscription = subscriptionRequest.takeIf { it != subscriptionNone }?.toSubscriptionLog(),
         responseSubscription = subscriptionResponse.takeIf { it != subscriptionNone }?.toSubscriptionLog(),
         responseSubscriptions = subscriptionsResponse.takeIf { it.isNotEmpty() }?.filter { it != subscriptionNone }?.map { it.toSubscriptionLog() },
-        requestFilter = subscriptionFilterRequest.takeIf { it != Filter() }?.toSubscriptionLog(),
+        requestFilter = subscriptionFilterRequest.takeIf { it != SubscriptionFilter() }?.toSubscriptionLog(),
     ).takeIf { it != SubscriptionLogModel() }
 }
 
-private fun Filter.toSubscriptionLog() = SubscriptionFilterLog(
+private fun SubscriptionFilter.toSubscriptionLog() = SubscriptionFilterLog(
     searchString = searchString.takeIf { it.isNotBlank() },
-    statusString = statusString.takeIf { it != SubscriptionStatus.NONE }?.toString(),
+    statusString = subscriptionStatus.takeIf { it != SubscriptionStatus.NONE }?.toString(),
     dealSide = dealSide.takeIf { it != DealSide.NONE }?.name,
 )
 

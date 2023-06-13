@@ -1,13 +1,22 @@
+package validation
+
+import SubscriptionRepoStub
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Test
 import ru.otus.otuskotlin.biz.SubscriptionProcessor
+import ru.otus.otuskotlin.common.CorSettings
 import ru.otus.otuskotlin.common.models.Command
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class BizValidationUpdateTest {
 
     private val command = Command.UPDATE
-    private val processor by lazy { SubscriptionProcessor() }
+    private val settings by lazy {
+        CorSettings(
+            repoSubscriptionTest = SubscriptionRepoStub()
+        )
+    }
+    private val processor by lazy { SubscriptionProcessor(settings) }
 
     @Test
     fun correctTitle() = validationTitleCorrect(command, processor)

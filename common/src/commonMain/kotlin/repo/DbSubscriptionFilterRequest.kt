@@ -6,4 +6,5 @@ import ru.otus.otuskotlin.common.models.SubscriptionStatus
 data class DbSubscriptionFilterRequest(
     val titleFilter: String = "",
     val dealSide: DealSide = DealSide.NONE,
+
 )

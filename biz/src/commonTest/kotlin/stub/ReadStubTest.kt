@@ -1,27 +1,30 @@
+package stub
+
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import ru.otus.otuskotlin.biz.SubscriptionProcessor
 import ru.otus.otuskotlin.common.Context
 import ru.otus.otuskotlin.common.Subscription
-import ru.otus.otuskotlin.common.models.*
+import ru.otus.otuskotlin.common.models.Command
+import ru.otus.otuskotlin.common.models.State
+import ru.otus.otuskotlin.common.models.SubscriptionRequestId
+import ru.otus.otuskotlin.common.models.WorkMode
 import ru.otus.otuskotlin.common.stubs.Stubs
 import ru.otus.otuskotlin.stubs.SubscriptionStub
 import kotlin.test.assertEquals
-import kotlin.test.assertTrue
-import kotlin.test.fail
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class OffersStubTest {
+class ReadStubTest {
 
     private val processor = SubscriptionProcessor()
-    val id = SubscriptionRequestId("2")
+    val id = SubscriptionRequestId("1")
 
     @Test
-    fun offers() = runTest {
+    fun read() = runTest {
 
         val ctx = Context(
-            command = Command.OFFERS,
+            command = Command.READ,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.SUCCESS,
@@ -30,32 +33,22 @@ class OffersStubTest {
             ),
         )
         processor.exec(ctx)
-
-        assertEquals(id, ctx.subscriptionResponse.id)
-
-        with(SubscriptionStub.get()) {
+        with (SubscriptionStub.get()) {
+            assertEquals(id, ctx.subscriptionResponse.id)
             assertEquals(title, ctx.subscriptionResponse.title)
             assertEquals(description, ctx.subscriptionResponse.description)
             assertEquals(subscriptionType, ctx.subscriptionResponse.subscriptionType)
         }
-
-        assertTrue(ctx.subscriptionsResponse.size > 1)
-        val first = ctx.subscriptionsResponse.firstOrNull() ?: fail("Empty response list")
-        assertTrue(first.title.contains(ctx.subscriptionResponse.title))
-        assertTrue(first.description.contains(ctx.subscriptionResponse.title))
-        assertEquals(DealSide.SUPPLY, first.subscriptionType)
     }
 
     @Test
     fun badId() = runTest {
         val ctx = Context(
-            command = Command.OFFERS,
+            command = Command.READ,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.BAD_ID,
-            subscriptionRequest = Subscription(
-                id = id,
-            ),
+            subscriptionRequest = Subscription(),
         )
         processor.exec(ctx)
         assertEquals(Subscription(), ctx.subscriptionResponse)
@@ -66,7 +59,7 @@ class OffersStubTest {
     @Test
     fun databaseError() = runTest {
         val ctx = Context(
-            command = Command.OFFERS,
+            command = Command.READ,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.DB_ERROR,
@@ -82,7 +75,7 @@ class OffersStubTest {
     @Test
     fun badNoCase() = runTest {
         val ctx = Context(
-            command = Command.OFFERS,
+            command = Command.READ,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.BAD_TITLE,

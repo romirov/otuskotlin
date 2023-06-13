@@ -4,7 +4,7 @@ import org.otus.otuskotlin.api.v1.models.*
 import ru.otus.otuskotlin.common.Context
 import ru.otus.otuskotlin.common.Subscription
 import ru.otus.otuskotlin.common.models.Command
-import ru.otus.otuskotlin.common.models.Filter
+import ru.otus.otuskotlin.common.models.SubscriptionFilter
 import ru.otus.otuskotlin.common.models.SubscriptionRequestId
 import ru.otus.otuskotlin.common.models.WorkMode
 import ru.otus.otuskotlin.common.stubs.Stubs
@@ -99,7 +99,7 @@ fun Context.fromSubscriptionTransport(request: SubscriptionOffersRequest) {
     stubCase = request.debug.transportToStubCase()
 }
 
-private fun SubscriptionSearchFilter?.toInternal(): Filter = Filter(
+private fun SubscriptionSearchFilter?.toInternal(): SubscriptionFilter = SubscriptionFilter(
     searchString = this?.searchString ?: ""
 )
 

@@ -1,3 +1,5 @@
+package stub
+
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
@@ -6,7 +8,6 @@ import ru.otus.otuskotlin.common.Context
 import ru.otus.otuskotlin.common.Subscription
 import ru.otus.otuskotlin.common.models.*
 import ru.otus.otuskotlin.common.stubs.Stubs
-import ru.otus.otuskotlin.stubs.SubscriptionStub
 import kotlin.test.assertEquals
 
 @OptIn(ExperimentalCoroutinesApi::class)

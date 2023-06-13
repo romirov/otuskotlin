@@ -1,12 +1,20 @@
+package validation
+
+import SubscriptionRepoStub
 import org.junit.Test
 import ru.otus.otuskotlin.biz.SubscriptionProcessor
+import ru.otus.otuskotlin.common.CorSettings
 import ru.otus.otuskotlin.common.models.Command
-import ru.otus.otuskotlin.common.models.SubscriptionRequestId
 
 class BizValidationCreateTest {
 
     private val command = Command.CREATE
-    private val processor by lazy { SubscriptionProcessor() }
+    private val settings by lazy {
+        CorSettings(
+            repoSubscriptionTest = SubscriptionRepoStub()
+        )
+    }
+    private val processor by lazy { SubscriptionProcessor(settings) }
 
     @Test
     fun correctTitle() = validationTitleCorrect(command, processor)

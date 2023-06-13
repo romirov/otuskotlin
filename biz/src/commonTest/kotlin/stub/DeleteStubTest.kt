@@ -1,3 +1,5 @@
+package stub
+
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
@@ -13,16 +15,16 @@ import ru.otus.otuskotlin.stubs.SubscriptionStub
 import kotlin.test.assertEquals
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class ReadStubTest {
+class DeleteStubTest {
 
     private val processor = SubscriptionProcessor()
     val id = SubscriptionRequestId("1")
 
     @Test
-    fun read() = runTest {
+    fun delete() = runTest {
 
         val ctx = Context(
-            command = Command.READ,
+            command = Command.DELETE,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.SUCCESS,
@@ -31,18 +33,18 @@ class ReadStubTest {
             ),
         )
         processor.exec(ctx)
-        with (SubscriptionStub.get()) {
-            assertEquals(id, ctx.subscriptionResponse.id)
-            assertEquals(title, ctx.subscriptionResponse.title)
-            assertEquals(description, ctx.subscriptionResponse.description)
-            assertEquals(subscriptionType, ctx.subscriptionResponse.subscriptionType)
-        }
+
+        val stub = SubscriptionStub.get()
+        assertEquals(stub.id, ctx.subscriptionResponse.id)
+        assertEquals(stub.title, ctx.subscriptionResponse.title)
+        assertEquals(stub.description, ctx.subscriptionResponse.description)
+        assertEquals(stub.subscriptionType, ctx.subscriptionResponse.subscriptionType)
     }
 
     @Test
     fun badId() = runTest {
         val ctx = Context(
-            command = Command.READ,
+            command = Command.DELETE,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.BAD_ID,
@@ -57,7 +59,7 @@ class ReadStubTest {
     @Test
     fun databaseError() = runTest {
         val ctx = Context(
-            command = Command.READ,
+            command = Command.DELETE,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.DB_ERROR,
@@ -73,7 +75,7 @@ class ReadStubTest {
     @Test
     fun badNoCase() = runTest {
         val ctx = Context(
-            command = Command.READ,
+            command = Command.DELETE,
             state = State.NONE,
             workMode = WorkMode.STUB,
             stubCase = Stubs.BAD_TITLE,

@@ -28,21 +28,21 @@ data class Context(
     var paymentsRepoDone: MutableList<Payment> = mutableListOf(),
 
     var subscriptionValidating: Subscription = Subscription(),
-    var subscriptionFilterValidating: Filter = Filter(),
+    var subscriptionFilterValidating: SubscriptionFilter = SubscriptionFilter(),
 
     var subscriptionValidated: Subscription = Subscription(),
-    var subscriptionFilterValidated: Filter = Filter(),
+    var subscriptionFilterValidated: SubscriptionFilter = SubscriptionFilter(),
 
     var paymentValidating: Payment = Payment(),
-    var paymentFilterValidating: Filter = Filter(),
+    var paymentFilterValidating: PaymentFilter = PaymentFilter(),
 
     var paymentValidated: Payment = Payment(),
-    var paymentFilterValidated: Filter = Filter(),
+    var paymentFilterValidated: PaymentFilter = PaymentFilter(),
 
     var timeStart: Instant = Instant.NONE,
     var subscriptionRequestId: SubscriptionRequestId = SubscriptionRequestId.NONE,
     var subscriptionRequest: Subscription = Subscription(),
-    var subscriptionFilterRequest: Filter = Filter(),
+    var subscriptionFilterRequest: SubscriptionFilter = SubscriptionFilter(),
     var subscriptionResponse: Subscription = Subscription(),
     var subscriptionsResponse: MutableList<Subscription> = mutableListOf(),
 
