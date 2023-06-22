@@ -1,4 +1,4 @@
-package ru.otus.otuskotlin.app
+package ru.otus.otuskotlin.app.stub
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.SerializationFeature
@@ -10,6 +10,7 @@ import io.ktor.serialization.jackson.*
 import io.ktor.server.testing.*
 import org.junit.Test
 import org.otus.otuskotlin.api.v1.models.*
+import ru.otus.otuskotlin.app.moduleJvm
 import ru.otus.otuskotlin.lib.logging.common.SLogWrapper
 import kotlin.test.assertEquals
 
@@ -17,6 +18,9 @@ class V1SubscriptionStubApiTest {
     private val logger = SLogWrapper.DEFAULT
     @Test
     fun create() = testApplication {
+        application {
+            moduleJvm()
+        }
         val client = myClient()
 
         val response = client.post("/v1/subscription/create") {
@@ -44,6 +48,9 @@ class V1SubscriptionStubApiTest {
 
     @Test
     fun read() = testApplication {
+        application {
+            moduleJvm()
+        }
         val client = myClient()
 
         val response = client.post("/v1/subscription/read") {
@@ -65,6 +72,9 @@ class V1SubscriptionStubApiTest {
 
     @Test
     fun update() = testApplication {
+        application {
+            moduleJvm()
+        }
         val client = myClient()
 
         val response = client.post("/v1/subscription/update") {
@@ -92,6 +102,9 @@ class V1SubscriptionStubApiTest {
 
     @Test
     fun delete() = testApplication {
+        application {
+            moduleJvm()
+        }
         val client = myClient()
 
         val response = client.post("/v1/subscription/delete") {
@@ -115,6 +128,9 @@ class V1SubscriptionStubApiTest {
 
     @Test
     fun search() = testApplication {
+        application {
+            moduleJvm()
+        }
         val client = myClient()
 
         val response = client.post("/v1/subscription/search") {
@@ -131,17 +147,24 @@ class V1SubscriptionStubApiTest {
         }
         val responseObj = response.body<SubscriptionSearchResponse>()
         assertEquals(200, response.status.value)
-        assertEquals("d-1-01", responseObj.subscriptions?.first()?.id)
+        val p = responseObj.subscriptions?.first()?.id
+        logger.info(p.toString())
+        assertEquals("d-1-01", p)
     }
 
     @Test
     fun status() = testApplication {
+        application {
+            moduleJvm()
+        }
         val client = myClient()
 
         val response = client.post("/v1/subscription/status") {
             val requestObj = SubscriptionStatusRequest(
                 requestId = "11",
-                subscription = SubscriptionStatusObject(id = "1"),
+                subscription = SubscriptionStatusObject(
+                    id = "11"
+                ),
                 debug = SubscriptionDebug(
                     mode = SubscriptionRequestDebugMode.STUB,
                     stub = SubscriptionRequestDebugStubs.SUCCESS
@@ -152,11 +175,14 @@ class V1SubscriptionStubApiTest {
         }
         val responseObj = response.body<SubscriptionStatusResponse>()
         assertEquals(200, response.status.value)
-        assertEquals("1", responseObj.subscription?.id)
+        assertEquals("11", responseObj.subscription?.id)
     }
 
     @Test
     fun offers() = testApplication {
+        application {
+            moduleJvm()
+        }
         val client = myClient()
 
         val response = client.post("/v1/subscription/offers") {

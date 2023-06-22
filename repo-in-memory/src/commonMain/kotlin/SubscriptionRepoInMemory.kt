@@ -4,7 +4,7 @@ import com.benasher44.uuid.uuid4
 import io.github.reactivecircus.cache4k.Cache
 import ru.otus.otuskotlin.common.Subscription
 import ru.otus.otuskotlin.common.models.CommonError
-import ru.otus.otuskotlin.common.models.DealSide
+import ru.otus.otuskotlin.common.models.CommonDealSide
 import ru.otus.otuskotlin.common.models.SubscriptionRequestId
 import ru.otus.otuskotlin.common.models.SubscriptionStatus
 import ru.otus.otuskotlin.common.repo.*
@@ -91,7 +91,7 @@ class SubscriptionRepoInMemory (
     override suspend fun searchSubscription(rq: DbSubscriptionFilterRequest): DbSubscriptionsResponse {
         val result = cache.asMap().asSequence()
             .filter { entry ->
-                rq.dealSide.takeIf { it != DealSide.NONE }?.let {
+                rq.commonDealSide.takeIf { it != CommonDealSide.NONE }?.let {
                     it.name == entry.value.subscriptionType
                 } ?: true
             }

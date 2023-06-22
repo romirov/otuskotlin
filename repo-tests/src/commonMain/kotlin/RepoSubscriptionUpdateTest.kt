@@ -3,7 +3,7 @@ package ru.otus.otuskotlin.repo.tests
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Test
 import ru.otus.otuskotlin.common.Subscription
-import ru.otus.otuskotlin.common.models.DealSide
+import ru.otus.otuskotlin.common.models.CommonDealSide
 import ru.otus.otuskotlin.common.models.SubscriptionRequestId
 import ru.otus.otuskotlin.common.repo.DbSubscriptionRequest
 import ru.otus.otuskotlin.common.repo.ISubscriptionRepository
@@ -20,14 +20,14 @@ abstract class RepoSubscriptionUpdateTest {
             id = updateSucc.id,
             title = "update object",
             description = "update object description",
-            subscriptionType = DealSide.SUPPLY,
+            subscriptionType = CommonDealSide.SUPPLY,
         )
     }
     private val reqUpdateNotFound = Subscription(
         id = updateIdNotFound,
         title = "update object not found",
         description = "update object not found description",
-        subscriptionType = DealSide.SUPPLY,
+        subscriptionType = CommonDealSide.SUPPLY,
     )
 
     @Test

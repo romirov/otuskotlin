@@ -15,8 +15,9 @@ import ru.otus.otuskotlin.lib.logging.logback.SLogWrapperLogback
 
 private val clazz = Application::moduleJvm::class.qualifiedName ?: "Application"
 
-//@Suppress("unused") // Referenced in application.conf
-fun Application.moduleJvm(appSettings: SAppSettings = initAppSettings()) {
+@Suppress("unused")
+fun Application.moduleJvm(appSettings: AppSettings = initAppSettings()) {
+    module(appSettings)
     install(CallLogging) {
         level = Level.INFO
         val lgr = appSettings

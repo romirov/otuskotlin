@@ -45,6 +45,8 @@ kotlin {
                 implementation(project(":mappers-log"))
                 implementation(project(":stubs"))
                 implementation(project(":biz"))
+                implementation(project(":repo-in-memory"))
+                implementation(project(":repo-stubs"))
 
                 implementation(ktorServer("core")) // "io.ktor:ktor-server-core:$ktorVersion"
                 implementation(ktorServer("cio")) // "io.ktor:ktor-server-cio:$ktorVersion"

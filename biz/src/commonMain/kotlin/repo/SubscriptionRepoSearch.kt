@@ -13,7 +13,7 @@ fun ICorChainDsl<Context>.repoSearchSubscription(title: String) = worker {
     handle {
         val request = DbSubscriptionFilterRequest(
             titleFilter = subscriptionFilterValidated.searchString,
-            dealSide = subscriptionFilterValidated.dealSide,
+            commonDealSide = subscriptionFilterValidated.commonDealSide,
         )
         val result = subscriptionRepo.searchSubscription(request)
         val resultSubscriptions = result.data

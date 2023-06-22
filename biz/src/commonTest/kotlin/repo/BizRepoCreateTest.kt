@@ -9,7 +9,6 @@ import ru.otus.otuskotlin.common.CorSettings
 import ru.otus.otuskotlin.common.Subscription
 import ru.otus.otuskotlin.common.models.*
 import ru.otus.otuskotlin.common.repo.DbSubscriptionResponse
-import ru.otus.otuskotlin.common.repo.DbSubscriptionsResponse
 import ru.otus.otuskotlin.repo.tests.SubscriptionRepositoryMock
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -47,7 +46,7 @@ class BizRepoCreateTest {
             subscriptionRequest = Subscription(
                 title = "abc",
                 description = "abc",
-                subscriptionType = DealSide.DEMAND,
+                subscriptionType = CommonDealSide.DEMAND,
             ),
         )
         processor.exec(ctx)
@@ -55,6 +54,6 @@ class BizRepoCreateTest {
         assertNotEquals(SubscriptionRequestId.NONE, ctx.subscriptionResponse.id)
         assertEquals("abc", ctx.subscriptionResponse.title)
         assertEquals("abc", ctx.subscriptionResponse.description)
-        assertEquals(DealSide.DEMAND, ctx.subscriptionResponse.subscriptionType)
+        assertEquals(CommonDealSide.DEMAND, ctx.subscriptionResponse.subscriptionType)
     }
 }

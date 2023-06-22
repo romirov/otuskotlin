@@ -16,7 +16,7 @@ import ru.otus.otuskotlin.mappers.log.toPaymentLog
 import ru.otus.otuskotlin.mappers.toTransportPayment
 
 suspend inline fun <reified Q : PaymentRequest, @Suppress("unused") reified R : PaymentResponse> ApplicationCall.processPayment(
-    appSettings: SAppSettings,
+    appSettings: AppSettings,
     logger: SLogWrapper,
     logId: String,
     command: Command? = null,

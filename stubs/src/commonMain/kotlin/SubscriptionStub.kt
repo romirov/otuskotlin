@@ -1,7 +1,7 @@
 package ru.otus.otuskotlin.stubs
 
 import ru.otus.otuskotlin.common.Subscription
-import ru.otus.otuskotlin.common.models.DealSide
+import ru.otus.otuskotlin.common.models.CommonDealSide
 import ru.otus.otuskotlin.common.models.ProductId
 import ru.otus.otuskotlin.common.models.SubscriptionRequestId
 import ru.otus.otuskotlin.common.models.SubscriptionStatus
@@ -14,7 +14,7 @@ object SubscriptionStub {
         description = "PostgreSQL cloud database service",
         productId = ProductId("1"),
         subscriptionStatus = SubscriptionStatus.ACTIVE,
-        subscriptionType = DealSide.DEMAND
+        subscriptionType = CommonDealSide.DEMAND
     )
 
     fun prepareResult(block: Subscription.() -> Unit): Subscription = get().apply(block)
@@ -28,7 +28,7 @@ object SubscriptionStub {
         getSubscriptionStatus("d-1-06", filter, status),
     )
 
-    fun prepareSearchList(filter: String, type: DealSide) = listOf(
+    fun prepareSearchList(filter: String, type: CommonDealSide) = listOf(
         getSubscriptionDemand("d-1-01", filter, type),
         getSubscriptionDemand("d-1-02", filter, type),
         getSubscriptionDemand("d-1-03", filter, type),
@@ -37,7 +37,7 @@ object SubscriptionStub {
         getSubscriptionDemand("d-1-06", filter, type),
     )
 
-    fun prepareOffersList(filter: String, type: DealSide) = listOf(
+    fun prepareOffersList(filter: String, type: CommonDealSide) = listOf(
         getSubscriptionSupply("s-1-01", filter, type),
         getSubscriptionSupply("s-1-02", filter, type),
         getSubscriptionSupply("s-1-03", filter, type),
@@ -46,16 +46,16 @@ object SubscriptionStub {
         getSubscriptionSupply("s-1-06", filter, type),
     )
 
-    private fun getSubscriptionDemand(id: String, filter: String, type: DealSide) =
+    private fun getSubscriptionDemand(id: String, filter: String, type: CommonDealSide) =
         getSubscription(get(), id = id, filter = filter, type = type)
 
     private fun getSubscriptionStatus(id: String, filter: String, status: SubscriptionStatus) =
         getSubscriptionStatus(get(), id = id, filter = filter, status = status)
 
-    private fun getSubscriptionSupply(id: String, filter: String, type: DealSide) =
+    private fun getSubscriptionSupply(id: String, filter: String, type: CommonDealSide) =
         getSubscription(get(), id = id, filter = filter, type = type)
 
-    private fun getSubscription(base: Subscription, id: String, filter: String, type: DealSide) = base.copy(
+    private fun getSubscription(base: Subscription, id: String, filter: String, type: CommonDealSide) = base.copy(
         id = SubscriptionRequestId(id),
         title = "$filter $id",
         description = "desc $filter $id",

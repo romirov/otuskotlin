@@ -1,6 +1,6 @@
 package ru.otus.otuskotlin.common.models
 
-enum class DealSide {
+enum class CommonDealSide {
     NONE,
     DEMAND,
     SUPPLY,

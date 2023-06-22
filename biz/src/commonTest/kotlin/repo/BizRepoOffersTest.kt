@@ -21,13 +21,13 @@ class BizRepoOffersTest {
         id = SubscriptionRequestId("123"),
         title = "abc",
         description = "abc",
-        subscriptionType = DealSide.DEMAND,
+        subscriptionType = CommonDealSide.DEMAND,
     )
     private val offerAd = Subscription(
         id = SubscriptionRequestId("321"),
         title = "abcd",
         description = "xyz",
-        subscriptionType = DealSide.SUPPLY,
+        subscriptionType = CommonDealSide.SUPPLY,
     )
     private val repo by lazy { SubscriptionRepositoryMock(
         invokeReadSubscription = {
@@ -64,7 +64,7 @@ class BizRepoOffersTest {
         processor.exec(ctx)
         assertEquals(State.FINISHING, ctx.state)
         assertEquals(1, ctx.subscriptionsResponse.size)
-        assertEquals(DealSide.SUPPLY, ctx.subscriptionsResponse.first().subscriptionType)
+        assertEquals(CommonDealSide.SUPPLY, ctx.subscriptionsResponse.first().subscriptionType)
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)

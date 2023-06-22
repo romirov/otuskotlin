@@ -3,10 +3,7 @@ package ru.otus.otuskotlin.mappers
 import org.otus.otuskotlin.api.v1.models.*
 import ru.otus.otuskotlin.common.Context
 import ru.otus.otuskotlin.common.Subscription
-import ru.otus.otuskotlin.common.models.Command
-import ru.otus.otuskotlin.common.models.SubscriptionFilter
-import ru.otus.otuskotlin.common.models.SubscriptionRequestId
-import ru.otus.otuskotlin.common.models.WorkMode
+import ru.otus.otuskotlin.common.models.*
 import ru.otus.otuskotlin.common.stubs.Stubs
 import ru.otus.otuskotlin.mappers.exceptions.UnknownRequestClass
 
@@ -105,15 +102,23 @@ private fun SubscriptionSearchFilter?.toInternal(): SubscriptionFilter = Subscri
 
 private fun SubscriptionCreateObject.toInternal(): Subscription = Subscription(
     title = this.title ?: "",
-    description = this.description ?: ""
+    description = this.description ?: "",
+    subscriptionType = this.subscriptionType.fromTransport(),
 )
 
 private fun SubscriptionUpdateObject.toInternal(): Subscription = Subscription(
     id = this.id.toSubscriptionId(),
     title = this.title ?: "",
-    description = this.description ?: ""
+    description = this.description ?: "",
+    subscriptionType = this.subscriptionType.fromTransport(),
 )
 
 private fun SubscriptionStatusObject.toInternal(): Subscription = Subscription(
     id = this.id.toSubscriptionId()
 )
+
+private fun DealSide?.fromTransport(): CommonDealSide = when (this) {
+    DealSide.DEMAND -> CommonDealSide.DEMAND
+    DealSide.SUPPLY -> CommonDealSide.SUPPLY
+    null -> CommonDealSide.NONE
+}

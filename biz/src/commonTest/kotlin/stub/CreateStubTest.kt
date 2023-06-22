@@ -18,7 +18,7 @@ class CreateStubTest {
     val id = SubscriptionRequestId("1")
     val title = "title 1"
     val description = "desc 1"
-    val dealSide = DealSide.DEMAND
+    val commonDealSide = CommonDealSide.DEMAND
 
     @Test
     fun create() = runTest {
@@ -32,14 +32,14 @@ class CreateStubTest {
                 id = id,
                 title = title,
                 description = description,
-                subscriptionType = dealSide,
+                subscriptionType = commonDealSide,
             ),
         )
         processor.exec(ctx)
         assertEquals(SubscriptionStub.get().id, ctx.subscriptionResponse.id)
         assertEquals(title, ctx.subscriptionResponse.title)
         assertEquals(description, ctx.subscriptionResponse.description)
-        assertEquals(dealSide, ctx.subscriptionResponse.subscriptionType)
+        assertEquals(commonDealSide, ctx.subscriptionResponse.subscriptionType)
     }
 
     @Test
@@ -53,7 +53,7 @@ class CreateStubTest {
                 id = id,
                 title = "",
                 description = description,
-                subscriptionType = dealSide,
+                subscriptionType = commonDealSide,
             ),
         )
         processor.exec(ctx)
@@ -72,7 +72,7 @@ class CreateStubTest {
                 id = id,
                 title = title,
                 description = "",
-                subscriptionType = dealSide,
+                subscriptionType = commonDealSide,
             ),
         )
         processor.exec(ctx)
@@ -108,7 +108,7 @@ class CreateStubTest {
                 id = id,
                 title = title,
                 description = description,
-                subscriptionType = dealSide,
+                subscriptionType = commonDealSide,
             ),
         )
         processor.exec(ctx)

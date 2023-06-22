@@ -16,7 +16,7 @@ import ru.otus.otuskotlin.mappers.log.toSubscriptionLog
 import ru.otus.otuskotlin.mappers.toTransportSubscription
 
 suspend inline fun <reified Q : SubscriptionRequest, @Suppress("unused") reified R : SubscriptionResponse> ApplicationCall.processSubscription(
-    appSettings: SAppSettings,
+    appSettings: AppSettings,
     logger: SLogWrapper,
     logId: String,
     command: Command? = null,

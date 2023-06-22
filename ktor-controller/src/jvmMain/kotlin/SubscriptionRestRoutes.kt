@@ -3,7 +3,7 @@ package ru.otus.otuskotlin.app
 import io.ktor.server.application.*
 import io.ktor.server.routing.*
 
-fun Route.subscription(appSettings: SAppSettings) {
+fun Route.subscription(appSettings: AppSettings) {
     val logger = appSettings.corSettings.loggerProvider.logger(Route::subscription::class)
     route("subscription") {
         post("create") {
@@ -27,7 +27,7 @@ fun Route.subscription(appSettings: SAppSettings) {
     }
 }
 
-fun Route.subscriptionOffers(appSettings: SAppSettings) {
+fun Route.subscriptionOffers(appSettings: AppSettings) {
     val logger = appSettings.corSettings.loggerProvider.logger(Route::subscriptionOffers::class)
     route("subscription") {
         post("offers") {

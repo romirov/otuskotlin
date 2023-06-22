@@ -15,7 +15,7 @@ private val initAd = Subscription(
     id = SubscriptionRequestId("123"),
     title = "abc",
     description = "abc",
-    subscriptionType = DealSide.DEMAND,
+    subscriptionType = CommonDealSide.DEMAND,
 )
 private val repo = SubscriptionRepositoryMock(
     invokeReadSubscription = {
@@ -48,7 +48,7 @@ fun repoNotFoundTest(command: Command) = runTest {
             id = SubscriptionRequestId("12345"),
             title = "xyz",
             description = "xyz",
-            subscriptionType = DealSide.DEMAND,
+            subscriptionType = CommonDealSide.DEMAND,
         ),
     )
     processor.exec(ctx)

@@ -1,7 +1,7 @@
 package ru.otus.otuskotlin.biz.workers
 
 import ru.otus.otuskotlin.common.Context
-import ru.otus.otuskotlin.common.models.DealSide
+import ru.otus.otuskotlin.common.models.CommonDealSide
 import ru.otus.otuskotlin.common.models.State
 import ru.otus.otuskotlin.common.models.SubscriptionRequestId
 import ru.otus.otuskotlin.common.stubs.Stubs
@@ -17,6 +17,6 @@ fun ICorChainDsl<Context>.stubOffersSuccess(title: String) = worker {
         subscriptionResponse = SubscriptionStub.prepareResult {
             subscriptionRequest.id.takeIf { it != SubscriptionRequestId.NONE }?.also { this.id = it }
         }
-        subscriptionsResponse.addAll(SubscriptionStub.prepareOffersList(subscriptionResponse.title, DealSide.SUPPLY))
+        subscriptionsResponse.addAll(SubscriptionStub.prepareOffersList(subscriptionResponse.title, CommonDealSide.SUPPLY))
     }
 }

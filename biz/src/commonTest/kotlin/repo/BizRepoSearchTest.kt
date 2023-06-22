@@ -20,7 +20,7 @@ class BizRepoSearchTest {
         id = SubscriptionRequestId("123"),
         title = "abc",
         description = "abc",
-        subscriptionType = DealSide.DEMAND,
+        subscriptionType = CommonDealSide.DEMAND,
     )
     private val repo by lazy { SubscriptionRepositoryMock(
         invokeSearchSubscription = {
@@ -46,7 +46,7 @@ class BizRepoSearchTest {
             workMode = WorkMode.TEST,
             subscriptionFilterRequest = SubscriptionFilter(
                 searchString = "ab",
-                dealSide = DealSide.DEMAND
+                commonDealSide = CommonDealSide.DEMAND
             ),
         )
         processor.exec(ctx)

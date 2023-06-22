@@ -8,9 +8,9 @@ ktor:
   watch:
     - classes
     - resources
-  application:
-    modules:
-      - "ru.otus.otuskotlin.app.ApplicationJvmKt.moduleJvm"
+#  application:
+#    modules:
+#      - "ru.otus.otuskotlin.app.ApplicationJvmKt.moduleJvm"
   urls:
     - "http://127.0.0.1:8080/"
     - "http://0.0.0.0:8080/"

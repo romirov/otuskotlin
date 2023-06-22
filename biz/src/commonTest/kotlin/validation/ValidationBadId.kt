@@ -20,7 +20,7 @@ fun validationIdCorrect(command: Command, processor: SubscriptionProcessor) = ru
             id = SubscriptionRequestId("123-234-abc-ABC"),
             title = "abc",
             description = "abc",
-            subscriptionType = DealSide.DEMAND
+            subscriptionType = CommonDealSide.DEMAND
         ),
     )
     processor.exec(ctx)
@@ -38,7 +38,7 @@ fun validationIdTrim(command: Command, processor: SubscriptionProcessor) = runTe
             id = SubscriptionRequestId(" \n\t 123-234-abc-ABC \n\t "),
             title = "abc",
             description = "abc",
-            subscriptionType = DealSide.DEMAND
+            subscriptionType = CommonDealSide.DEMAND
         ),
     )
     processor.exec(ctx)
@@ -56,7 +56,7 @@ fun validationIdEmpty(command: Command, processor: SubscriptionProcessor) = runT
             id = SubscriptionRequestId(""),
             title = "abc",
             description = "abc",
-            subscriptionType = DealSide.DEMAND
+            subscriptionType = CommonDealSide.DEMAND
         ),
     )
     processor.exec(ctx)
@@ -77,7 +77,7 @@ fun validationIdFormat(command: Command, processor: SubscriptionProcessor) = run
             id = SubscriptionRequestId("!@#\$%^&*(),.{}"),
             title = "abc",
             description = "abc",
-            subscriptionType = DealSide.DEMAND
+            subscriptionType = CommonDealSide.DEMAND
         ),
     )
     processor.exec(ctx)

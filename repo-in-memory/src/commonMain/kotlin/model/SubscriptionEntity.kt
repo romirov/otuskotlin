@@ -1,7 +1,7 @@
 package ru.otus.otuskotlin.repo.inmemory.model
 
 import ru.otus.otuskotlin.common.*
-import ru.otus.otuskotlin.common.models.DealSide
+import ru.otus.otuskotlin.common.models.CommonDealSide
 import ru.otus.otuskotlin.common.models.SubscriptionRequestId
 import ru.otus.otuskotlin.common.models.SubscriptionStatus
 
@@ -17,7 +17,7 @@ data class SubscriptionEntity(
         title = model.title.takeIf { it.isNotBlank() },
         description = model.description.takeIf { it.isNotBlank() },
         subscriptionStatus = model.subscriptionStatus.takeIf { it != SubscriptionStatus.NONE }?.name,
-        subscriptionType = model.subscriptionType.takeIf { it != DealSide.NONE }?.name,
+        subscriptionType = model.subscriptionType.takeIf { it != CommonDealSide.NONE }?.name,
     )
 
     fun toInternal() = Subscription(
@@ -25,6 +25,6 @@ data class SubscriptionEntity(
         title = title?: "",
         description = description?: "",
         subscriptionStatus = subscriptionStatus?.let { SubscriptionStatus.valueOf(it) }?: SubscriptionStatus.NONE,
-        subscriptionType = subscriptionType?.let { DealSide.valueOf(it) }?: DealSide.NONE,
+        subscriptionType = subscriptionType?.let { CommonDealSide.valueOf(it) }?: CommonDealSide.NONE,
     )
 }

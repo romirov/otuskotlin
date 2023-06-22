@@ -1,4 +1,4 @@
-import ru.otus.otuskotlin.common.models.DealSide
+import ru.otus.otuskotlin.common.models.CommonDealSide
 import ru.otus.otuskotlin.common.models.SubscriptionStatus
 import ru.otus.otuskotlin.common.repo.*
 import ru.otus.otuskotlin.stubs.SubscriptionStub
@@ -34,7 +34,7 @@ class SubscriptionRepoStub : ISubscriptionRepository {
 
     override suspend fun searchSubscription(rq: DbSubscriptionFilterRequest): DbSubscriptionsResponse {
         return DbSubscriptionsResponse(
-            data = SubscriptionStub.prepareSearchList(filter = "", DealSide.DEMAND),
+            data = SubscriptionStub.prepareSearchList(filter = "", CommonDealSide.DEMAND),
             isSuccess = true,
         )
     }

@@ -3,7 +3,7 @@ package ru.otus.otuskotlin.repo.tests
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Test
 import ru.otus.otuskotlin.common.Subscription
-import ru.otus.otuskotlin.common.models.DealSide
+import ru.otus.otuskotlin.common.models.CommonDealSide
 import ru.otus.otuskotlin.common.models.SubscriptionRequestId
 import ru.otus.otuskotlin.common.repo.DbSubscriptionRequest
 import ru.otus.otuskotlin.common.repo.ISubscriptionRepository
@@ -17,7 +17,7 @@ abstract class RepoSubscriptionCreateTest {
     private val createObj = Subscription(
         title = "create object",
         description = "create object description",
-        subscriptionType = DealSide.SUPPLY,
+        subscriptionType = CommonDealSide.SUPPLY,
     )
 
     @Test

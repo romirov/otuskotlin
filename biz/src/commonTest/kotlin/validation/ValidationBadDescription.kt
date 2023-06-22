@@ -6,7 +6,7 @@ import ru.otus.otuskotlin.biz.SubscriptionProcessor
 import ru.otus.otuskotlin.common.Context
 import ru.otus.otuskotlin.common.Subscription
 import ru.otus.otuskotlin.common.models.Command
-import ru.otus.otuskotlin.common.models.DealSide
+import ru.otus.otuskotlin.common.models.CommonDealSide
 import ru.otus.otuskotlin.common.models.State
 import ru.otus.otuskotlin.common.models.WorkMode
 import ru.otus.otuskotlin.stubs.SubscriptionStub
@@ -26,7 +26,7 @@ fun validationDescriptionCorrect(command: Command, processor: SubscriptionProces
             id = stub.id,
             title = "abc",
             description = "abc",
-            subscriptionType = DealSide.DEMAND
+            subscriptionType = CommonDealSide.DEMAND
         ),
     )
     processor.exec(ctx)
@@ -45,7 +45,7 @@ fun validationDescriptionTrim(command: Command, processor: SubscriptionProcessor
             id = stub.id,
             title = "abc",
             description = " \n\tabc \n\t",
-            subscriptionType = DealSide.DEMAND,
+            subscriptionType = CommonDealSide.DEMAND,
         ),
     )
     processor.exec(ctx)
@@ -64,7 +64,7 @@ fun validationDescriptionEmpty(command: Command, processor: SubscriptionProcesso
             id = stub.id,
             title = "abc",
             description = "",
-            subscriptionType = DealSide.DEMAND,
+            subscriptionType = CommonDealSide.DEMAND,
         ),
     )
     processor.exec(ctx)
@@ -85,7 +85,7 @@ fun validationDescriptionSymbols(command: Command, processor: SubscriptionProces
             id = stub.id,
             title = "abc",
             description = "!@#$%^&*(),.{}",
-            subscriptionType = DealSide.DEMAND
+            subscriptionType = CommonDealSide.DEMAND
         ),
     )
     processor.exec(ctx)

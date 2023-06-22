@@ -1,7 +1,6 @@
 package ru.otus.otuskotlin.mappers.log
 
 import kotlinx.datetime.Clock
-import models.*
 import org.otus.otuskotlin.api.logs.models.CommonPaymentLogModel
 import org.otus.otuskotlin.api.logs.models.PaymentErrorLogModel
 import org.otus.otuskotlin.api.logs.models.PaymentLog

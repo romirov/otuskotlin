@@ -23,7 +23,7 @@ fun validationTitleCorrect(command: Command, processor: SubscriptionProcessor) =
             id = stub.id,
             title = "abc",
             description = "abc",
-            subscriptionType = DealSide.DEMAND,
+            subscriptionType = CommonDealSide.DEMAND,
         ),
     )
     processor.exec(ctx)
@@ -42,7 +42,7 @@ fun validationTitleTrim(command: Command, processor: SubscriptionProcessor) = ru
             id = stub.id,
             title = " \n\t abc \t\n ",
             description = "abc",
-            subscriptionType = DealSide.DEMAND
+            subscriptionType = CommonDealSide.DEMAND
         ),
     )
     processor.exec(ctx)
@@ -61,7 +61,7 @@ fun validationTitleEmpty(command: Command, processor: SubscriptionProcessor) = r
             id = stub.id,
             title = "",
             description = "abc",
-            subscriptionType = DealSide.DEMAND
+            subscriptionType = CommonDealSide.DEMAND
         ),
     )
     processor.exec(ctx)
@@ -82,7 +82,7 @@ fun validationTitleSymbols(command: Command, processor: SubscriptionProcessor) =
             id = SubscriptionRequestId("123"),
             title = "!@#$%^&*(),.{}",
             description = "abc",
-            subscriptionType = DealSide.DEMAND
+            subscriptionType = CommonDealSide.DEMAND
         ),
     )
     processor.exec(ctx)

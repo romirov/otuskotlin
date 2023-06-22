@@ -20,7 +20,7 @@ class BizRepoReadTest {
         id = SubscriptionRequestId("123"),
         title = "abc",
         description = "abc",
-        subscriptionType = DealSide.DEMAND,
+        subscriptionType = CommonDealSide.DEMAND,
     )
     private val repo by lazy { SubscriptionRepositoryMock(
         invokeReadSubscription = {

@@ -1,8 +1,7 @@
 package ru.otus.otuskotlin.biz.workers
 
 import ru.otus.otuskotlin.common.Context
-import ru.otus.otuskotlin.common.models.DealSide
-import ru.otus.otuskotlin.common.models.PaymentStatus
+import ru.otus.otuskotlin.common.models.CommonDealSide
 import ru.otus.otuskotlin.common.models.State
 import ru.otus.otuskotlin.common.stubs.Stubs
 import ru.otus.otuskotlin.lib.cor.ICorChainDsl
@@ -18,7 +17,7 @@ fun ICorChainDsl<Context>.stubCreateSuccess(title: String) = worker {
         val stubSubscription = SubscriptionStub.prepareResult {
             subscriptionRequest.title.takeIf { it.isNotBlank() }?.also { this.title = it }
             subscriptionRequest.description.takeIf { it.isNotBlank() }?.also { this.description = it }
-            subscriptionRequest.subscriptionType.takeIf { it != DealSide.NONE }?.also { this.subscriptionType = it }
+            subscriptionRequest.subscriptionType.takeIf { it != CommonDealSide.NONE }?.also { this.subscriptionType = it }
         }
         subscriptionResponse = stubSubscription
 

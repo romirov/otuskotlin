@@ -21,7 +21,7 @@ class BizRepoUpdateTest {
         id = SubscriptionRequestId("123"),
         title = "abc",
         description = "abc",
-        subscriptionType = DealSide.DEMAND,
+        subscriptionType = CommonDealSide.DEMAND,
     )
     private val repo by lazy { SubscriptionRepositoryMock(
         invokeReadSubscription = {
@@ -37,7 +37,7 @@ class BizRepoUpdateTest {
                     id = SubscriptionRequestId("123"),
                     title = "xyz",
                     description = "xyz",
-                    subscriptionType = DealSide.DEMAND,
+                    subscriptionType = CommonDealSide.DEMAND,
                 )
             )
         }
@@ -55,7 +55,7 @@ class BizRepoUpdateTest {
             id = SubscriptionRequestId("123"),
             title = "xyz",
             description = "xyz",
-            subscriptionType = DealSide.DEMAND,
+            subscriptionType = CommonDealSide.DEMAND,
         )
         val ctx = Context(
             command = command,

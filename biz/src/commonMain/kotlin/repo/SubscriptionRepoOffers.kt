@@ -2,7 +2,7 @@ package ru.otus.otuskotlin.biz.repo
 
 import ru.otus.otuskotlin.common.Context
 import ru.otus.otuskotlin.common.models.CommonError
-import ru.otus.otuskotlin.common.models.DealSide
+import ru.otus.otuskotlin.common.models.CommonDealSide
 import ru.otus.otuskotlin.common.models.State
 import ru.otus.otuskotlin.common.repo.DbSubscriptionFilterRequest
 import ru.otus.otuskotlin.common.repo.DbSubscriptionsResponse
@@ -17,13 +17,13 @@ fun ICorChainDsl<Context>.repoOffersSubscription(title: String) = worker {
         val subscriptionRequest = subscriptionRepoPrepare
         val filter = DbSubscriptionFilterRequest(
             titleFilter = subscriptionRequest.title,
-            dealSide = when (subscriptionRequest.subscriptionType) {
-                DealSide.DEMAND -> DealSide.SUPPLY
-                DealSide.SUPPLY -> DealSide.DEMAND
-                DealSide.NONE -> DealSide.NONE
+            commonDealSide = when (subscriptionRequest.subscriptionType) {
+                CommonDealSide.DEMAND -> CommonDealSide.SUPPLY
+                CommonDealSide.SUPPLY -> CommonDealSide.DEMAND
+                CommonDealSide.NONE -> CommonDealSide.NONE
             }
         )
-        val dbResponse = if (filter.dealSide == DealSide.NONE) {
+        val dbResponse = if (filter.commonDealSide == CommonDealSide.NONE) {
             DbSubscriptionsResponse(
                 data = null,
                 isSuccess = false,

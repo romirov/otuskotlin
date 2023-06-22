@@ -1,6 +1,5 @@
 package ru.otus.otuskotlin.mappers
 
-import models.*
 import org.otus.otuskotlin.api.v1.models.*
 import ru.otus.otuskotlin.common.Context
 import ru.otus.otuskotlin.common.models.Command

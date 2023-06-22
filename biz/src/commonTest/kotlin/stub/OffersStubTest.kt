@@ -45,7 +45,7 @@ class OffersStubTest {
         val first = ctx.subscriptionsResponse.firstOrNull() ?: fail("Empty response list")
         assertTrue(first.title.contains(ctx.subscriptionResponse.title))
         assertTrue(first.description.contains(ctx.subscriptionResponse.title))
-        assertEquals(DealSide.SUPPLY, first.subscriptionType)
+        assertEquals(CommonDealSide.SUPPLY, first.subscriptionType)
     }
 
     @Test

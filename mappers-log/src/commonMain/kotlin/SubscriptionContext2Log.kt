@@ -28,7 +28,7 @@ fun Context.toSubscriptionLog(): SubscriptionLogModel? {
 private fun SubscriptionFilter.toSubscriptionLog() = SubscriptionFilterLog(
     searchString = searchString.takeIf { it.isNotBlank() },
     statusString = subscriptionStatus.takeIf { it != SubscriptionStatus.NONE }?.toString(),
-    dealSide = dealSide.takeIf { it != DealSide.NONE }?.name,
+    dealSide = commonDealSide.takeIf { it != CommonDealSide.NONE }?.name,
 )
 
 fun CommonError.toSubscriptionLog() = SubscriptionErrorLogModel(
@@ -42,7 +42,7 @@ fun Subscription.toSubscriptionLog() = SubscriptionLog(
     id = id.takeIf { it != SubscriptionRequestId.NONE }?.asString(),
     title = title.takeIf { it.isNotBlank() },
     description = description.takeIf { it.isNotBlank() },
-    subscriptionType = subscriptionType.takeIf { it != DealSide.NONE }?.name,
+    subscriptionType = subscriptionType.takeIf { it != CommonDealSide.NONE }?.name,
     subscriptionStatus = subscriptionStatus.takeIf { it != SubscriptionStatus.NONE }?.name,
     productId = productId.takeIf { it != ProductId.NONE }?.asString(),
 )
